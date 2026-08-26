@@ -34,7 +34,7 @@ tests/                  comprobaciones automáticas
 Se recomienda Python 3.12.
 
 ```bash
-git clone URL_DEL_REPOSITORIO
+git clone https://github.com/carloskoo1/radioenlace-inteligente-metodologia.git
 cd radioenlace-inteligente-metodologia
 python -m venv .venv
 ```
