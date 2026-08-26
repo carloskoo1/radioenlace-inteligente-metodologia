@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "Si utiliza este repositorio, cite la tesis y este artefacto reproducible."
+title: "Metodología reproducible para el diagnóstico y pronóstico del radioenlace Cuñacales–San José"
+type: software
+authors:
+  - family-names: Tamay
+    given-names: Ubelser
+  - family-names: Koo Labrín
+    given-names: Carlos Jesús
+version: 1.0.0
+date-released: 2026-08-25
+repository-code: "https://github.com/carloskoo1/radioenlace-inteligente-metodologia"
+license: MIT

@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+.venv/
+.mplconfig/
+.DS_Store
+data/raw/extracted/
+results/tables/master_minute.csv.gz
+results/tables/forecast_test_predictions.csv

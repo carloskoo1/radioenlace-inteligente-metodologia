@@ -1,0 +1,36 @@
+project: radioenlace-cunacales-san-jose
+timezone: America/Lima
+period:
+  start: 2026-01-26
+  end: 2026-05-31
+source:
+  role: AP
+  cadence: 1min
+quality:
+  invalid_rssi: ">= 0 dBm"
+  invalid_snr: "<= 0 dB"
+  predictor_forward_fill_limit_minutes: 1
+split:
+  method: chronological
+  train: 0.70
+  validation: 0.15
+  test: 0.15
+forecast:
+  targets: [rssi_dl_dbm, mcs_dl, rate_dl_mbps]
+  horizons_minutes: [5, 15, 30]
+  models: [Persistencia, Ridge, HistGradientBoosting]
+states_proxy:
+  minimum_available_indicators: 3
+  degraded: "al menos un indicador <= P10"
+  critical: "al menos dos indicadores <= P5, o tasa DL <= P1, o SNR DL <= P1"
+classification:
+  horizon_minutes: 15
+  model: HistGradientBoosting
+anomaly_detection:
+  model: IsolationForest
+  contamination: 0.01
+  estimators: 200
+bootstrap:
+  resamples: 1000
+  moving_block_minutes: 60
+random_seed: 42

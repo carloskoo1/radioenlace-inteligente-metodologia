@@ -1,0 +1,2 @@
+metric,horizon_min,difference_hgb_minus_persistence,ci_low,ci_high,supported_95
+f1_macro,15,0.02812755993273708,-0.01677408285058505,0.046183381382632546,False

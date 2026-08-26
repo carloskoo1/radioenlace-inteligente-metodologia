@@ -1,0 +1,49 @@
+{
+  "raw_files": 90,
+  "raw_ap_rows": 173513,
+  "master_minutes_total": 180025,
+  "master_observed_minutes": 118458,
+  "period_start": "2026-01-26 00:00:00-05:00",
+  "period_end": "2026-05-31 00:24:00-05:00",
+  "train_end": "2026-05-06 03:01:00-05:00",
+  "validation_end": "2026-05-18 12:42:00-05:00",
+  "state_thresholds_training_only": {
+    "rssi_dl_dbm": {
+      "0.01": -79.0,
+      "0.05": -78.0,
+      "0.1": -78.0,
+      "0.25": -77.0
+    },
+    "snr_dl_db": {
+      "0.01": 19.0,
+      "0.05": 19.0,
+      "0.1": 19.0,
+      "0.25": 20.0
+    },
+    "mcs_dl": {
+      "0.01": 101.0,
+      "0.05": 101.5,
+      "0.1": 102.0,
+      "0.25": 104.0
+    },
+    "rate_dl_mbps": {
+      "0.01": 51.0,
+      "0.05": 68.0,
+      "0.1": 85.5,
+      "0.25": 103.0
+    }
+  },
+  "state_counts": {
+    "normal": 85469,
+    "nan": 62114,
+    "degraded": 18705,
+    "critical": 13737
+  },
+  "anomaly_complete_rows": 117911,
+  "anomaly_flags": 1093,
+  "limitations": [
+    "Operational states are proxy labels derived from training quantiles, not field-validated ground truth.",
+    "rate_dl_mbps is negotiated/data rate from dl_rate, not confirmed application throughput.",
+    "Scenario/configuration and incident logs were not supplied."
+  ]
+}
