@@ -34,4 +34,8 @@ La presencia de código y verificadores no sustituye una **ejecución independie
 
 ## Estado documental
 
-La tesis completa y el PowerPoint de sustentación (archivos binarios DOCX/PPTX) se gestionan por separado; este directorio **no debe interpretarse como depósito de esos dos archivos**. La versión de trabajo de la tesis utilizada para extraer las fichas contenía todavía campos provisionales en agradecimientos y dedicatoria, por lo que no se identifica como tesis aprobada ni definitiva.
+Se han incorporado al repositorio archivos binarios de referencia en [docs/material_original/](../material_original/): `Tesis_Ubelser_Tamay_FUENTE_2026-10-28.docx` y `Presentacion_Ubelser_BASE_2026-10-28.pptx`. **Estos son material fuente/base**, no equivalen necesariamente a la última tesis compaginada o a la última presentación revisada. La tesis fuente contiene contenido provisional y no se identifica como tesis aprobada.
+
+La extensión visual [dashboard/](../../dashboard/) incluye un software Streamlit ejecutable para navegar resultados históricos; fue añadida con posterioridad a la investigación sellada.
+
+**Auditoría independiente:** [Windows Python 3.12/3.13](../reproducibilidad/AUDITORIA_WINDOWS_PY313_2026-10-28.md). Los conteos de datos, anomalías y ciertos pronósticos coinciden, pero la clasificación y las alertas difieren de la versión científica. No afirmar reproducibilidad numérica integral antes de resolver el hallazgo.
