@@ -1,5 +1,7 @@
 # Material para la sustentación — Ubelser Tamay
 
+**Instalación en otra computadora y replicación por terceros:** [guía detallada de instalación, ejecución y reproducibilidad](../GUIA_INSTALACION_DASHBOARD_Y_REPRODUCIBILIDAD.md). Incluye comprobaciones, incidencias frecuentes y las discrepancias documentadas de la auditoría independiente.
+
 Este directorio acompaña el producto científico y tecnológico publicado en este repositorio. **No modifica los experimentos ni los resultados de la versión fija [v1.0.0](https://github.com/carloskoo1/radioenlace-inteligente-metodologia/releases/tag/v1.0.0).**
 
 ## ¿Qué producto presenta la tesis?
