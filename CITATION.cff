@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "Si utiliza este repositorio, cite la tesis y este artefacto reproducible."
+message: "Si utiliza este repositorio, cite este artefacto reproducible y la tesis asociada."
 title: "Metodología reproducible para el diagnóstico y pronóstico del radioenlace Cuñacales–San José"
 type: software
 authors:
@@ -11,7 +11,31 @@ authors:
     given-names: Carlos Jesús
     affiliation: Universidad Nacional de Cajamarca
     orcid: "https://orcid.org/0000-0002-0323-2961"
-version: 1.0.0
-date-released: 2026-08-25
+version: 1.1.0
+date-released: 2026-10-28
 repository-code: "https://github.com/carloskoo1/radioenlace-inteligente-metodologia"
-license: MIT
+license:
+  - MIT
+  - CC-BY-4.0
+abstract: >-
+  Código, datos, protocolos, resultados y documentos complementarios del sistema
+  inteligente para el diagnóstico y pronóstico operacional del radioenlace rural
+  altoandino Cuñacales–San José. Incluye clasificación de estados operacionales
+  proxy, detección de anomalías y pronósticos de RSSI, MCS y tasa DL a 5, 15 y
+  30 minutos, con evaluación temporal y auditoría independiente en Linux/Python
+  3.12. La versión 1.1.0 incorpora un dashboard de demostración posterior al
+  estudio, guías de instalación y reproducibilidad, la tesis en versión de
+  cierre documental pendiente de aprobación académica y el dictamen de cierre.
+  La telemetría reciente procedente de respaldos se presenta como visualización,
+  sin atribuirle predicción validada en tiempo real. Se conservan las limitaciones
+  y las discrepancias de Windows documentadas. El código se distribuye bajo
+  MIT; los datos y documentos, bajo CC BY 4.0, según los archivos de licencia.
+  La versión científica histórica v1.0.0 permanece inalterada.
+keywords:
+  - radioenlace rural
+  - telemetría
+  - aprendizaje automático
+  - validación temporal
+  - reproducibilidad
+  - Andes
+  - Perú
