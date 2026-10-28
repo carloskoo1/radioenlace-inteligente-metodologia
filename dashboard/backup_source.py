@@ -46,7 +46,7 @@ def read_recent_backup(directory, limit=180):
     # Si se está copiando un ZIP nuevo, ignorarlo y recurrir a una copia anterior.
     for archive in archives[:4]:
         try:
-            if archive.stat().st_size < 1024:
+            if archive.stat().st_size < 22:
                 continue
             with ZipFile(archive) as z:
                 if BACKUP_CSV not in z.namelist():
