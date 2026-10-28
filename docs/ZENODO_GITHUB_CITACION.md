@@ -50,3 +50,16 @@ Cuando se obtenga el DOI, actualizar este archivo y la sección de citación del
 Comprobar que Zenodo importe en este orden a **Ubelser Tamay (ORCID 0009-0007-2020-2338)** y **Carlos Jesús Koo Labrín (ORCID 0000-0002-0323-2961)**. Si no aparecen automáticamente en el depósito, corregir los creadores **antes** de publicar. El DOI **todavía está pendiente** y no se genera por disponer de ORCID.
 
 **Elección de metadatos:** Zenodo admite `CITATION.cff` y `.zenodo.json`, pero en presencia de ambos utiliza solo `.zenodo.json`; por ello, para este repositorio mantenemos un único origen autoritativo de los metadatos de software en `CITATION.cff`. Consulte [la documentación oficial de Zenodo](https://help.zenodo.org/docs/github/describe-software/citation-file/).
+
+## Solución si Zenodo confirma «Repositories synced successfully» pero la lista sigue vacía
+
+En la comprobación del 28 de octubre de 2026, Zenodo mostraba únicamente `carloskoo1/mimo-radio-link-telemetry-analysis` como repositorio habilitado y no listaba `carloskoo1/radioenlace-inteligente-metodologia` en **Repositories**, incluso después de sincronizar. El repositorio de Ubelser **sí existe, es público y la cuenta tiene permisos de administrador**; esto descarta que esté borrado o que sea privado, pero no determina por sí solo la causa de la omisión.
+
+1. **Sin desactivar el repositorio ya archivado**, pulse `Sync now`, espere a que concluya y recargue la página completa. Confirme que ingresó con la cuenta correcta de GitHub.
+2. Revise en GitHub [Settings → Applications → Authorized OAuth Apps](https://github.com/settings/applications) la autorización de **Zenodo** y los permisos vigentes. La documentación de GitHub explica cómo revisar aplicaciones autorizadas: https://docs.github.com/en/apps/oauth-apps/using-oauth-apps/reviewing-your-authorized-oauth-apps .
+3. Si GitHub ofrece opciones para autorizar o actualizar permisos de Zenodo, revise el alcance y apruebe **solo lo necesario**; una reautorización o revocación no debe hacerse automáticamente porque podría interrumpir el archivo de otros repositorios.
+4. Retorne a https://zenodo.org/account/settings/github/ y vuelva a pulsar `Sync now`. Si no aparece, contacte con soporte Zenodo y adjunte el nombre exacto del repositorio y la captura; no invente un DOI.
+5. Como alternativa, Zenodo también permite crear **un depósito manual** del paquete científico, con un DOI distinto del que emitiría la integración GitHub. No publique dos depósitos del mismo artefacto sin establecer una política de versiones y relaciones entre identificadores.
+
+**Estado documentado:** sincronización solicitada; repositorio de Ubelser aún no habilitado en Zenodo; DOI pendiente.
+
