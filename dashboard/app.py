@@ -8,6 +8,7 @@ import os
 import platform
 import pandas as pd
 from dashboard.live_source import read_recent_ap
+from dashboard.backup_source import read_recent_backup, default_backup_directory
 import streamlit as st
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -201,58 +202,84 @@ with tabs[7]:
                "versiones del entorno y comparaciones con tablas publicadas.")
 
 with tabs[8]:
-    st.subheader("Telemetría que se está adquiriendo actualmente")
-    st.caption("Extensión experimental de monitoreo histórico reciente, no parte de la evaluación original "
-               "de Ubelser. Esta vista consulta una base SQLite local en modo de SOLO LECTURA; "
-               "nunca interroga radios ni modifica el proceso de adquisición.")
-    @st.fragment(run_every="30s")
-    def live_monitor():
-        state = read_recent_ap(os.environ.get("UBELSER_LIVE_DB_PATH"),
-                               limit=180, stale_after_seconds=300)
+    st.subheader("Telemetría actual disponible en Research")
+    st.caption("Esta ampliación utiliza datos posteriores al estudio de Ubelser. "
+               "No constituye validación predictiva en 6 GHz, ni monitoreo de fallas reales. "
+               "No consulta radios ni modifica las campañas de AtmosLink.")
+
+    @st.fragment(run_every="5min")
+    def current_telemetry():
+        live_db = os.environ.get("UBELSER_LIVE_DB_PATH")
+        backup_folder = os.environ.get("UBELSER_BACKUP_DIR") or default_backup_directory()
+        if live_db:
+            state = read_recent_ap(live_db, limit=180, stale_after_seconds=300)
+            snapshot_mode = False
+        else:
+            state = read_recent_backup(backup_folder, limit=180)
+            snapshot_mode = True
+
         if state["status"] == "unconfigured":
-            st.info("La fuente de datos actuales no está conectada en este equipo. "
-                    "Configure UBELSER_LIVE_DB_PATH con la ruta local autorizada "
-                    "de la base de AtmosLink del Controlador. "
-                    "No use rutas compartidas públicas ni publique credenciales.")
+            st.info("Sin fuente configurada. En Research se buscará automáticamente "
+                    "la carpeta G:/Mi unidad/AtmosLink_Backups_UNC/CU01/field. "
+                    "En otra computadora configure UBELSER_BACKUP_DIR con la carpeta "
+                    "donde llegan los ZIP. No requiere acceso al Controlador.")
             return
         if state["status"] in ("missing", "error", "empty"):
-            st.warning(state["message"])
+            st.warning("No se pudo leer una fuente de telemetría: " + state["message"])
             return
-        ts = state.get("last_timestamp", "No disponible")
+        timestamp = state.get("last_timestamp", "No disponible")
         age = state.get("age_seconds")
-        if state["status"] == "stale":
-            st.warning("Sin datos suficientemente recientes. Última lectura: " + ts)
+        if snapshot_mode:
+            hours = f"{age / 3600:.1f}" if age is not None else "desconocido"
+            st.info("**Origen: copia de respaldo de AtmosLink — NO datos en vivo.** "
+                    "Último registro RF: " + timestamp +
+                    ". Antigüedad de la observación: " + hours + " h. "
+                    "Respaldo: " + state.get("backup_name", "sin nombre") + ".")
+            if age is not None and age > 24 * 3600:
+                st.warning("El último registro tiene más de 24 horas. "
+                           "Compruebe que Google Drive haya sincronizado el último respaldo.")
+        elif state["status"] == "stale":
+            st.warning("Fuente directa de solo lectura desactualizada. Última observación AP: "
+                       + timestamp)
         else:
-            st.success("Fuente activa. Última lectura AP: " + ts)
-        config = state.get("config") or {}
-        if config:
-            st.caption("Banda reportada: " + str(config.get("frequency_band", "no disponible"))
-                       + " · Canal: " + str(config.get("channel_bandwidth_mhz", "?"))
-                       + " MHz. Son datos actuales; pueden diferir del escenario de la tesis.")
+            st.success("Fuente directa de solo lectura activa. Última observación AP: "
+                       + timestamp)
+
         df = pd.DataFrame(state["rows"])
-        metrics = [("rssi_dl_dbm", "RSSI DL", "dBm"), ("snr_dl_db", "SNR DL", "dB"),
-                   ("mcs_dl", "MCS DL", ""), ("rate_dl_mbps", "Tasa DL negociada", "Mbps")]
-        cc = st.columns(4)
-        for (col, label, unit), colview in zip(metrics, cc):
-            val = pd.to_numeric(df[col], errors="coerce").iloc[-1]
-            colview.metric(label, (f"{val:.1f} {unit}" if pd.notna(val) else "Sin dato"))
-        df["timestamp_local"] = pd.to_datetime(df["timestamp_local"], errors="coerce")
+        if df.empty:
+            st.warning("No se encontraron observaciones RF disponibles.")
+            return
+        cfg = state.get("config") or {}
+        st.caption("Banda de los datos: " + str(cfg.get("frequency_band", "no declarada"))
+                   + ". Tasa DL: indicador negociado por Cambium, no throughput TCP. "
+                   "En los respaldos el muestreo integrado es aproximadamente de 5 minutos.")
+        metrics = [("rssi_dl_dbm", "RSSI DL", "dBm"),
+                   ("snr_dl_db", "SNR DL", "dB"),
+                   ("mcs_dl", "MCS DL", ""),
+                   ("rate_dl_mbps", "Tasa DL negociada", "Mbps")]
+        cols = st.columns(4)
+        for (key, label, unit), col in zip(metrics, cols):
+            val = pd.to_numeric(df[key], errors="coerce").iloc[-1]
+            col.metric(label, f"{val:.1f} {unit}" if pd.notna(val) else "Sin dato")
+
+        df["timestamp_local"] = pd.to_datetime(df["timestamp_local"],
+                                                errors="coerce", utc=True)
         df = df.dropna(subset=["timestamp_local"]).set_index("timestamp_local")
-        plot = pd.DataFrame(index=df.index)
-        for col, label, _ in metrics:
-            plot[label] = pd.to_numeric(df[col], errors="coerce")
-        selected = st.selectbox("Variable para graficar", plot.columns.tolist(),
-                                key="live_metric")
-        st.line_chart(plot[[selected]], height=300)
-        st.caption("Se actualiza cada 30 segundos. AP exclusivamente; no duplica registros SM. "
-                   "La antigüedad de los datos se verifica antes de mostrar «Fuente activa». "
-                   "La tasa DL es negociada, no throughput TCP. "
-                   "No se generan predicciones de fallas: los modelos históricos "
-                   "requieren validar compatibilidad y deriva de los datos actuales.")
-        st.download_button("Descargar ventana consultada (CSV)", data=plot.to_csv(),
-                           file_name="telemetria_actual_ap.csv",
-                           mime="text/csv", key="live_download")
-    live_monitor()
+        window = pd.DataFrame(index=df.index)
+        for key, label, _ in metrics:
+            window[label] = pd.to_numeric(df[key], errors="coerce")
+        choice = st.selectbox("Variable para graficar", list(window.columns),
+                              key="current_telemetry_metric")
+        st.line_chart(window[[choice]], height=300)
+        st.caption("La página revisa cada 5 minutos si existe un respaldo más reciente. "
+                   "La frecuencia real de actualización de mediciones depende "
+                   "de la generación y sincronización de los ZIP. "
+                   "No se ejecutan los modelos históricos sobre estos datos nuevos.")
+        st.download_button("Descargar ventana RF visualizada (CSV)",
+                           data=window.to_csv(), file_name="rf_respaldo_cu01.csv",
+                           mime="text/csv", key="current_telemetry_download")
+
+    current_telemetry()
 
 st.divider()
-st.caption("Extensión de investigación: telemetría histórica y monitoreo actual de solo lectura; los modelos de tesis no operan en tiempo real.")
+st.caption("Extensión de investigación: análisis histórico y lectura RF desde respaldo o fuente autorizada de solo lectura. No ejecuta modelos históricos en tiempo real.")
