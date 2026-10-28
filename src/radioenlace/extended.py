@@ -74,7 +74,7 @@ pd.DataFrame([{'metric':'f1_macro','horizon_min':15,'difference_hgb_minus_persis
 
 # Permutation importance on a time-spread subset, using macro F1.
 sel=np.linspace(0,len(Xte)-1,min(3000,len(Xte)),dtype=int)
-pi=permutation_importance(clf,Xte.iloc[sel],yte.iloc[sel],scoring='f1_macro',n_repeats=3,random_state=SEED,n_jobs=-1)
+pi=permutation_importance(clf,Xte.iloc[sel],yte.iloc[sel],scoring='f1_macro',n_repeats=3,random_state=SEED,n_jobs=1)
 imp=pd.DataFrame({'feature':feature_cols,'importance_mean':pi.importances_mean,'importance_std':pi.importances_std}).sort_values('importance_mean',ascending=False)
 imp.to_csv(OUT/'classification_feature_importance.csv',index=False)
 
