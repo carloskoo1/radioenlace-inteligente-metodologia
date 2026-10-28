@@ -1,5 +1,7 @@
 # Auditoría independiente — Windows, Python 3.13 (28-10-2026)
 
+> **Actualización 28-10-2026:** el análisis completo **sí se reprodujo en Ubuntu/Python 3.12** mediante una [auditoría independiente de GitHub Actions](AUDITORIA_LINUX_EXITOSA_2026-10-28.md), con F1-macro 0,574798, AUC 0,794037, 723 alertas correctas y 1 742 falsas alertas. Las diferencias descritas abajo quedan delimitadas a las ejecuciones Windows probadas. El mecanismo técnico exacto de la variación entre plataformas aún no está identificado; no se debe afirmar que los datos científicos originales son irreproducibles.
+
 ## Procedimiento
 
 Se clonó una copia limpia de la etiqueta científica **v1.0.0**, commit `8f175ffef568c25cbaee91a1c04da3f2cc38cdb2`, en un directorio aislado. Se instaló `requirements.txt` con Python 3.13 y se ejecutó `python scripts/run_all.py` sin modificar los archivos fuente. La verificación SHA-256 de `Datos.zip` fue satisfactoria y se procesaron los 90 archivos originales.
