@@ -111,3 +111,12 @@ Se añadió [dashboard/app.py](dashboard/app.py) con [instrucciones de instalaci
 - [Copias de Word y PowerPoint disponibles como documentos de origen](docs/material_original/); **no son las revisiones finales de sustentación**.
 
 **Actualización de reproducibilidad (28-10-2026):** una [ejecución independiente en Linux/Python 3.12](docs/reproducibilidad/AUDITORIA_LINUX_EXITOSA_2026-10-28.md) completó el flujo completo y reprodujo las cifras originales de F1-macro, AUC y alertas. La ejecución nativa en Windows continúa mostrando diferencias de HistGradientBoosting; por ello, **Linux/Python 3.12 es el entorno verificado**. Se conserva [la auditoría de Windows](docs/reproducibilidad/AUDITORIA_WINDOWS_PY313_2026-10-28.md) para trazabilidad.
+
+
+## Cierre documental y preservación Zenodo
+
+- [**Tesis de Ubelser, cierre documental en Word (28-10-2026)**](docs/material_original/TESIS_UBELSER_TAMAY_CIERRE_DOCUMENTAL_2026-10-28.docx), con dedicatoria a sus padres y agradecimiento al Dr. Carlos Jesús Koo Labrín. **Versión de revisión final, no aprobación oficial.**
+- [**Dictamen técnico-académico de cierre (Word)**](docs/material_original/DICTAMEN_TECNICO_ACADEMICO_UBELSER_2026-10-28.docx) y [versión consultable en Markdown](docs/DICTAMEN_CIERRE_CIENTIFICO_UBELSER_2026-10-28.md): favorable al cierre científico con controles editoriales finales.
+- [**Guía para habilitar el depósito GitHub–Zenodo**](docs/ZENODO_GITHUB_CITACION.md), incluyendo metadatos propuestos y [acceso a la configuración de Zenodo](https://zenodo.org/account/settings/github/). **Aún no existe DOI verificado para este repositorio**.
+
+La presentación que figura en `docs/material_original/` se identifica expresamente como **BASE**, no como la última presentación de defensa. El release científico `v1.0.0` no se modifica.
