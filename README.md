@@ -2,6 +2,8 @@
 
 Repositorio metodológico y reproducible de la investigación sobre diagnóstico y pronóstico operacional mediante analítica de datos temporales.
 
+**¿Quiere ejecutar el producto en otra computadora?** Consulte la [guía completa de instalación del dashboard y reproducción científica](docs/GUIA_INSTALACION_DASHBOARD_Y_REPRODUCIBILIDAD.md), con instrucciones para Windows, Linux/macOS, soluciones a errores y auditoría independiente de los resultados.
+
 ## Qué reproduce
 
 - depuración e integración de 173 513 registros AP;
