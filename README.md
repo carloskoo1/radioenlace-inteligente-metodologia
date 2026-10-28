@@ -100,7 +100,7 @@ Se incorporaron [materiales de apoyo a la sustentación](docs/sustentacion/READM
 
 ## Dashboard ejecutable de demostración
 
-Se añadió [dashboard/app.py](dashboard/app.py) con [instrucciones de instalación](dashboard/README.md). Utiliza Streamlit para explorar salidas reales del pipeline y ejecutar el análisis nuevamente bajo demanda. Esta interfaz es **posterior al estudio**: no estaba desplegada sobre el radioenlace y no debe confundirse con telemetría en tiempo real. Requiere instalar también el archivo dashboard/requirements-dashboard.txt.
+Se añadió [dashboard/app.py](dashboard/app.py) con [instrucciones de instalación](dashboard/README.md), incluida una **novena pestaña de telemetría actual** (solo lectura; requiere fuente local autorizada). Utiliza Streamlit para explorar salidas reales del pipeline y ejecutar el análisis nuevamente bajo demanda. Esta interfaz es **posterior al estudio**: no estaba desplegada sobre el radioenlace y no debe confundirse con telemetría en tiempo real. Requiere instalar también el archivo dashboard/requirements-dashboard.txt.
 
 ### Producto, auditoría y archivos de trabajo
 
@@ -110,4 +110,4 @@ Se añadió [dashboard/app.py](dashboard/app.py) con [instrucciones de instalaci
 - [Acción manual de reproducción en Linux y Python 3.12](.github/workflows/reproduccion_cientifica.yml), que permite generar un nuevo registro verificable sin modificar el release científico.
 - [Copias de Word y PowerPoint disponibles como documentos de origen](docs/material_original/); **no son las revisiones finales de sustentación**.
 
-La auditoría de octubre de 2026 confirmó la integridad de los archivos, el número de registros y varios pronósticos, pero encontró discrepancias del clasificador y las alertas en Windows. No debe afirmarse reproducibilidad numérica integral mientras no se explique y verifique esa diferencia.
+**Actualización de reproducibilidad (28-10-2026):** una [ejecución independiente en Linux/Python 3.12](docs/reproducibilidad/AUDITORIA_LINUX_EXITOSA_2026-10-28.md) completó el flujo completo y reprodujo las cifras originales de F1-macro, AUC y alertas. La ejecución nativa en Windows continúa mostrando diferencias de HistGradientBoosting; por ello, **Linux/Python 3.12 es el entorno verificado**. Se conserva [la auditoría de Windows](docs/reproducibilidad/AUDITORIA_WINDOWS_PY313_2026-10-28.md) para trazabilidad.
