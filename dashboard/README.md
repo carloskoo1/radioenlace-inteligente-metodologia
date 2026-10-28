@@ -60,3 +60,33 @@ El dashboard de **Research** mantiene operativas las vistas históricas aunque n
 **Importante:** las lecturas actuales son reales, pero la extensión todavía **no implementa inferencia predictiva en vivo**. No se deben aplicar sin validación los modelos históricos a una configuración de radio que difiere del conjunto de entrenamiento. Antes de activar predicción real, verificar hardware, banda/frecuencia, unidades, distribución de señales, esquemas MCS, calidad de adquisición y deriva temporal. Las etiquetas del estudio fueron *proxy* y no incidentes confirmados.
 
 Pruebas del adaptador: `python -m unittest discover -s tests -p test_live_source.py -v`. Esas pruebas emplean una base SQLite **sintética y temporal**, nunca la base de producción.
+
+
+## Alternativa recomendada: datos reales desde los respaldos que ya llegan a Research
+
+**Comprobado el 28 de octubre de 2026.** Research tiene acceso a los respaldos de CU01 a través de Google Drive para escritorio. En esa instalación se detectó la carpeta:
+
+```text
+G:/Mi unidad/AtmosLink_Backups_UNC/CU01/field/
+```
+
+El ZIP `backup_CU01_20261028_061956.zip` contiene `scientific_campaign_6g_integrated.csv` con **16 028 registros** de telemetría 6 GHz hasta las **05:56:51, hora de Perú**. En esa misma fecha había varios ZIP, aproximadamente cada seis horas. La disponibilidad de nuevos respaldos depende de la sincronización externa; el dashboard no los crea.
+
+La pestaña **Telemetría actual** detecta automáticamente esa ruta en Research y lee los **últimos 180 registros válidos** directamente del CSV comprimido. No necesita extraer la base `weather_local.db` (~1,77 GB en el respaldo revisado), ni modificar los ZIP, ni conectarse a Controlador. El gráfico muestra RSSI, SNR, MCS y tasa DL **negociada**. Se comprueba la marca temporal de la última lectura y el nombre del respaldo.
+
+**Importante:** refrescar la página cada cinco minutos **no produce datos nuevos**. Solo detecta ZIP más recientes. Las cifras pueden tener horas de antigüedad y siempre se presentan como **telemetría real de un respaldo, no en tiempo real**.
+
+Si los ZIP están en otra ubicación en Windows, configure la ruta antes de iniciar:
+
+```powershell
+$env:UBELSER_BACKUP_DIR = "D:\\Respaldos\\CU01"
+.\\.venv\\Scripts\\python.exe -m streamlit run dashboard\\app.py
+```
+
+En Linux/macOS: `export UBELSER_BACKUP_DIR="/ruta/autorizada/a/field"`.
+
+La conexión opcional `UBELSER_LIVE_DB_PATH` conserva prioridad cuando se configura explícitamente; en ese caso se consulta una **copia SQLite local autorizada** en modo solo lectura. Sin dicha variable, se usa la fuente de respaldos. No exponga la base ni dispositivos por Internet.
+
+El proceso de respaldo AtmosLink no se modifica. **No se entrenan modelos ni se generan predicciones en vivo con los nuevos datos**, que corresponden a un escenario de radio 6 GHz diferente del conjunto histórico evaluado en la tesis.
+
+Pruebas: `python -m unittest discover -s tests -p test_backup_source.py -v`.
