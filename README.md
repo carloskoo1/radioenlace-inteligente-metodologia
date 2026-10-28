@@ -99,3 +99,13 @@ Se incorporaron [materiales de apoyo a la sustentación](docs/sustentacion/READM
 ## Dashboard ejecutable de demostración
 
 Se añadió [dashboard/app.py](dashboard/app.py) con [instrucciones de instalación](dashboard/README.md). Utiliza Streamlit para explorar salidas reales del pipeline y ejecutar el análisis nuevamente bajo demanda. Esta interfaz es **posterior al estudio**: no estaba desplegada sobre el radioenlace y no debe confundirse con telemetría en tiempo real. Requiere instalar también el archivo dashboard/requirements-dashboard.txt.
+
+### Producto, auditoría y archivos de trabajo
+
+- [Definición del producto tecnológico y su relación con cada objetivo](docs/PRODUCTO_TECNOLOGICO.md).
+- [Auditoría independiente realizada en Windows y sus discrepancias documentadas](docs/reproducibilidad/AUDITORIA_WINDOWS_PY313_2026-10-28.md).
+- [Guía para auditar reproducciones](docs/reproducibilidad/GUIA_AUDITORIA.md).
+- [Acción manual de reproducción en Linux y Python 3.12](.github/workflows/reproduccion_cientifica.yml), que permite generar un nuevo registro verificable sin modificar el release científico.
+- [Copias de Word y PowerPoint disponibles como documentos de origen](docs/material_original/); **no son las revisiones finales de sustentación**.
+
+La auditoría de octubre de 2026 confirmó la integridad de los archivos, el número de registros y varios pronósticos, pero encontró discrepancias del clasificador y las alertas en Windows. No debe afirmarse reproducibilidad numérica integral mientras no se explique y verifique esa diferencia.
