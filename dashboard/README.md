@@ -33,6 +33,8 @@ Abra en un navegador la dirección local indicada por Streamlit (usualmente http
 
 ## Origen y límites
 
+La [auditoría independiente en Linux/Python 3.12](../docs/reproducibilidad/AUDITORIA_LINUX_EXITOSA_2026-10-28.md) ha reproducido las métricas principales, mientras que Windows nativo arroja algunas diferencias de HGB. Para reproducir exactamente los resultados científicos recomendamos Linux, no Windows nativo.
+
 El análisis original y sus resultados están documentados en la [versión científica v1.0.0](https://github.com/carloskoo1/radioenlace-inteligente-metodologia/releases/tag/v1.0.0). La interfaz se añadió en main como herramienta adicional. Las métricas no son garantía de generalización a nuevos radioenlaces ni evidencia de fallas reales verificadas.
 
 Para defensa, distinga entre: (1) producto computacional evaluado en la tesis; (2) dashboard añadido posteriormente; (3) validación de desempeño fuera de muestra; y (4) reproducción independiente desde los archivos originales.
