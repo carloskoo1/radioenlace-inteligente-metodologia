@@ -250,3 +250,38 @@ El repositorio principal contiene además [scripts/auditar_reproduccion.py](../s
 ---
 
 **Si usted es un investigador externo:** primero complete las secciones **2 a 4** para comprobar que el dashboard puede instalarse y abrirse. Después, si desea comprobar el artículo o la tesis científicamente, realice por separado la sección **7** y documente tanto las coincidencias como las discrepancias. Conservar hallazgos discordantes es parte de la transparencia científica.
+
+
+## 10. Reproducción científica desde Windows mediante WSL2 (Linux)
+
+Si utiliza Windows, el dashboard histórico se abre nativamente según las secciones 2–4; pero para **replicar los resultados numéricos de la tesis** conviene ejecutar el pipeline dentro de Linux. La alternativa integrada es WSL2.
+
+En PowerShell **como administrador**, en un equipo con virtualización habilitada:
+
+~~~powershell
+wsl --install -d Ubuntu-24.04
+~~~
+
+Windows puede solicitar reinicio y creación de un usuario Linux. Después, abra Ubuntu:
+
+~~~powershell
+wsl -d Ubuntu-24.04
+~~~
+
+**Los siguientes comandos se ejecutan dentro de la terminal de Ubuntu, no en PowerShell:**
+
+~~~bash
+sudo apt update
+sudo apt install -y git python3.12 python3.12-venv python3-pip
+git clone https://github.com/carloskoo1/radioenlace-inteligente-metodologia.git
+cd radioenlace-inteligente-metodologia
+git checkout 528b8a9fac79ac2846ef5f2f62802a3ec1b50c06
+python3.12 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+sha256sum data/raw/Datos.zip
+.venv/bin/python scripts/run_all.py | tee ejecucion_linux.log
+~~~
+
+La huella SHA-256 esperada de Datos.zip se encuentra en data/README.md. El commit fijado es el verificado por la [acción independiente exitosa de Linux](reproducibilidad/AUDITORIA_LINUX_EXITOSA_2026-10-28.md). La ejecución dentro de WSL2 es una ruta recomendada a verificar en la máquina del lector; el caso comprobado independientemente corresponde a GitHub Actions/Ubuntu con Python 3.12. **No confunda una receta de instalación con una ejecución nueva ya verificada.**
+
+Si WSL2 no está disponible, puede consultar o volver a ejecutar el [workflow de GitHub Actions](https://github.com/carloskoo1/radioenlace-inteligente-metodologia/actions) en la plataforma pública del repositorio, sin instalar el entorno científico en la laptop.
