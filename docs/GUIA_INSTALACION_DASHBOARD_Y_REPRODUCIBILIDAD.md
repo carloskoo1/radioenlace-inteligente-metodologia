@@ -46,9 +46,9 @@ git clone https://github.com/carloskoo1/radioenlace-inteligente-metodologia.git
 cd radioenlace-inteligente-metodologia
 ~~~
 
-Esto crea una carpeta del proyecto en su perfil de usuario. No copie únicamente la dirección \`localhost\` que se usa en otra computadora: **localhost es siempre la computadora donde está abierto el navegador**.
+Esto crea una carpeta del proyecto en su perfil de usuario. No copie únicamente la dirección `localhost` que se usa en otra computadora: **localhost es siempre la computadora donde está abierto el navegador**.
 
-Si ya existe esa carpeta, no ejecute \`git clone\` encima de ella. Utilice otro nombre de destino para una copia nueva:
+Si ya existe esa carpeta, no ejecute `git clone` encima de ella. Utilice otro nombre de destino para una copia nueva:
 
 ~~~powershell
 cd $HOME
@@ -79,7 +79,7 @@ py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m streamlit run dashboard\app.py
 ~~~
 
-**No hace falta activar el entorno** mediante \`Activate.ps1\`; aquí se invoca directamente el Python de \`.venv\`, evitando bloqueos de la política de ejecución de PowerShell.
+**No hace falta activar el entorno** mediante `Activate.ps1`; aquí se invoca directamente el Python de `.venv`, evitando bloqueos de la política de ejecución de PowerShell.
 
 Cuando Streamlit muestre la dirección local, abra en el navegador:
 
@@ -96,7 +96,7 @@ cd "$HOME\radioenlace-inteligente-metodologia"
 .\.venv\Scripts\python.exe -m streamlit run dashboard\app.py
 ~~~
 
-Si utilizó el nombre alternativo \`radioenlace-inteligente-dashboard-nuevo\`, reemplace la ruta correspondiente. Deje abierta la ventana de PowerShell mientras use la aplicación. Para detenerla, presione **Ctrl+C** en esa misma ventana.
+Si utilizó el nombre alternativo `radioenlace-inteligente-dashboard-nuevo`, reemplace la ruta correspondiente. Deje abierta la ventana de PowerShell mientras use la aplicación. Para detenerla, presione **Ctrl+C** en esa misma ventana.
 
 ## 4. Comprobar que está funcionando de verdad
 
@@ -116,13 +116,13 @@ Una respuesta **200** indica que el servidor web responde. Puede comprobarse ade
 
 | Síntoma | Causa probable | Qué hacer |
 |---|---|---|
-| Firefox muestra «No se puede conectar» a \`localhost:8501\` | Streamlit no está ejecutándose en esa computadora | Vuelva a abrir PowerShell, entre a la carpeta correcta e inicie \`python -m streamlit run\` como se indica en 3.4. No cierre la ventana. |
-| \`No module named streamlit\` | Se usó otro Python o no se instalaron dependencias | Use \`.\.venv\Scripts\python.exe -m pip install -r dashboard\requirements-dashboard.txt\` y arranque con ese mismo ejecutable. |
-| \`dashboard/app.py\` no existe | Copia local desactualizada o carpeta incorrecta | Descargue la rama \`main\` en una carpeta nueva y compruebe que exista \`dashboard\app.py\`. |
-| \`py -3.12\` no se reconoce | Python 3.12 o su lanzador no está instalado | Instale Python 3.12 y abra una ventana nueva de PowerShell. |
-| \`git\` no se reconoce | Git no está instalado o no está en PATH | Instale Git para Windows y abra otra terminal. |
-| El puerto 8501 está ocupado | Otra aplicación está utilizando el puerto | Use \`.\.venv\Scripts\python.exe -m streamlit run dashboard\app.py --server.port 8502\` y abra \`http://localhost:8502\`. |
-| Error durante \`pip install\` | Conexión, proxy, permisos o incompatibilidad | Revise el mensaje completo; utilice Python 3.12, el entorno virtual y conexión estable. No ignore un error de instalación. |
+| Firefox muestra «No se puede conectar» a `localhost:8501` | Streamlit no está ejecutándose en esa computadora | Vuelva a abrir PowerShell, entre a la carpeta correcta e inicie `python -m streamlit run` como se indica en 3.4. No cierre la ventana. |
+| `No module named streamlit` | Se usó otro Python o no se instalaron dependencias | Use `.\.venv\Scripts\python.exe -m pip install -r dashboard\requirements-dashboard.txt` y arranque con ese mismo ejecutable. |
+| `dashboard/app.py` no existe | Copia local desactualizada o carpeta incorrecta | Descargue la rama `main` en una carpeta nueva y compruebe que exista `dashboard\app.py`. |
+| `py -3.12` no se reconoce | Python 3.12 o su lanzador no está instalado | Instale Python 3.12 y abra una ventana nueva de PowerShell. |
+| `git` no se reconoce | Git no está instalado o no está en PATH | Instale Git para Windows y abra otra terminal. |
+| El puerto 8501 está ocupado | Otra aplicación está utilizando el puerto | Use `.\.venv\Scripts\python.exe -m streamlit run dashboard\app.py --server.port 8502` y abra `http://localhost:8502`. |
+| Error durante `pip install` | Conexión, proxy, permisos o incompatibilidad | Revise el mensaje completo; utilice Python 3.12, el entorno virtual y conexión estable. No ignore un error de instalación. |
 | Se abre el dashboard pero faltan algunas visualizaciones | Ciertas salidas detalladas aún no se generaron en esa copia | El dashboard muestra las tablas publicadas; algunas gráficas individuales requieren ejecutar el análisis. **Ejecutarlo puede sobrescribir las tablas locales y revelar las discrepancias documentadas**: hágalo en una copia para auditoría. |
 
 **Seguridad:** no es necesario abrir puertos del router ni desactivar el firewall para usarlo localmente. No exponga esta aplicación a Internet sin revisar sus controles; la función de reejecución del pipeline debe reservarse a entornos confiables.
@@ -140,7 +140,7 @@ python3 -m venv .venv
 .venv/bin/python -m streamlit run dashboard/app.py
 ~~~
 
-Abra la URL local que muestre Streamlit. También está disponible \`bash dashboard/iniciar_linux_mac.sh\` como iniciador. El funcionamiento en Linux/macOS dependerá de la plataforma y las dependencias; una instalación exitosa no debe confundirse con reproducción científica comprobada.
+Abra la URL local que muestre Streamlit. También está disponible `bash dashboard/iniciar_linux_mac.sh` como iniciador. El funcionamiento en Linux/macOS dependerá de la plataforma y las dependencias; una instalación exitosa no debe confundirse con reproducción científica comprobada.
 
 ## 7. Reproducir científicamente los resultados (procedimiento separado)
 
@@ -158,11 +158,11 @@ py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 ~~~
 
-La etiqueta fija permite identificar el código publicado que se intenta reproducir, independientemente de nuevas incorporaciones en la rama \`main\`.
+La etiqueta fija permite identificar el código publicado que se intenta reproducir, independientemente de nuevas incorporaciones en la rama `main`.
 
 ### 7.2 — Verificar la integridad del archivo de datos
 
-Desde la carpeta \`ubelser-auditoria-v1\`:
+Desde la carpeta `ubelser-auditoria-v1`:
 
 ~~~powershell
 (Get-FileHash -Algorithm SHA256 "data\raw\Datos.zip").Hash
@@ -183,9 +183,9 @@ Si no coincide, **detenga la auditoría** y compruebe la descarga: no modifique 
 $LASTEXITCODE
 ~~~
 
-El comando puede consumir tiempo y recursos de cómputo. El archivo \`reproduccion_ejecucion.log\` conserva la salida del proceso. **No borre el registro si hay errores**. El valor \`0\` indica que el programa terminó satisfactoriamente según sus propias comprobaciones; valores diferentes indican que hay que inspeccionar el log.
+El comando puede consumir tiempo y recursos de cómputo. El archivo `reproduccion_ejecucion.log` conserva la salida del proceso. **No borre el registro si hay errores**. El valor `0` indica que el programa terminó satisfactoriamente según sus propias comprobaciones; valores diferentes indican que hay que inspeccionar el log.
 
-**Advertencia respaldada por auditorías anteriores:** la reejecución de la versión científica en Windows produjo el mismo número de registros originales, minutos observados y anomalías, y coincidencia de varios pronósticos; sin embargo, **no reprodujo exactamente F1-macro, AUC ni los conteos de alertas**. Por ello, es posible que \`run_all.py\` termine con error al llegar a \`verify_outputs.py\`. No oculte ni fuerce el resultado modificando tolerancias.
+**Advertencia respaldada por auditorías anteriores:** la reejecución de la versión científica en Windows produjo el mismo número de registros originales, minutos observados y anomalías, y coincidencia de varios pronósticos; sin embargo, **no reprodujo exactamente F1-macro, AUC ni los conteos de alertas**. Por ello, es posible que `run_all.py` termine con error al llegar a `verify_outputs.py`. No oculte ni fuerce el resultado modificando tolerancias.
 
 ### 7.4 — Registrar el entorno técnico
 
@@ -217,13 +217,13 @@ Para ver un análisis **ya realizado** de la discrepancia, consulte [Auditoría 
 
 **La reproducibilidad de los datos y de ciertos pronósticos está sustentada; la reproducibilidad numérica integral todavía no está demostrada.** La causa de las discrepancias del clasificador sigue bajo investigación. No atribuirla automáticamente a Python, a los hilos del procesador o al sistema operativo sin evidencia.
 
-El repositorio principal contiene además [scripts/auditar_reproduccion.py](../scripts/auditar_reproduccion.py) (agregado después de \`v1.0.0\`) para comparar resultados recalculados con la referencia publicada. No se encuentra dentro de la etiqueta científica antigua. Si se utiliza, debe ejecutarse en una copia de auditoría que incluya ese script y conservar explícitamente qué versión de código y datos se evaluó.
+El repositorio principal contiene además [scripts/auditar_reproduccion.py](../scripts/auditar_reproduccion.py) (agregado después de `v1.0.0`) para comparar resultados recalculados con la referencia publicada. No se encuentra dentro de la etiqueta científica antigua. Si se utiliza, debe ejecutarse en una copia de auditoría que incluya ese script y conservar explícitamente qué versión de código y datos se evaluó.
 
 ## 8. Buenas prácticas y límites para reutilizar esta investigación
 
 - La evaluación se hizo con telemetría del radioenlace **Cuñacales–San José**. No representa automáticamente todos los radioenlaces.
 - Los estados «normal», «degradado» y «crítico» proceden de **reglas proxy**; no están confirmados mediante una bitácora completa de fallas reales.
-- \`rate_dl_mbps\` es la **tasa negociada que reporta el equipo**, no throughput efectivo de usuario.
+- `rate_dl_mbps` es la **tasa negociada que reporta el equipo**, no throughput efectivo de usuario.
 - Los resultados de las asociaciones radio–clima son exploratorios y no prueban causalidad.
 - Mantenga separaciones cronológicas y transformaciones entrenadas exclusivamente con datos anteriores a la prueba.
 - No publique direcciones externas, contraseñas ni archivos de configuración sensibles que pudieran aparecer en sus copias locales.
@@ -233,17 +233,17 @@ El repositorio principal contiene además [scripts/auditar_reproduccion.py](../s
 
 | Ruta | Qué encontrará |
 |---|---|
-| [\`dashboard/app.py\`](../dashboard/app.py) | Interfaz interactiva Streamlit |
-| [\`dashboard/iniciar_windows.bat\`](../dashboard/iniciar_windows.bat) | Iniciador Windows |
-| [\`scripts/run_all.py\`](../scripts/run_all.py) | Secuencia de reproducción |
-| [\`scripts/verify_outputs.py\`](../scripts/verify_outputs.py) | Verificador básico del flujo |
-| [\`src/radioenlace/\`](../src/radioenlace/) | Implementación computacional |
-| [\`config/analysis.yml\`](../config/analysis.yml) | Parámetros del experimento |
-| [\`data/raw/Datos.zip\`](../data/raw/Datos.zip) | Archivo de datos originales |
-| [\`results/tables/\`](../results/tables/) | Tablas de resultados publicadas |
-| [\`results/figures/\`](../results/figures/) | Figuras publicadas |
-| [\`docs/instrumentos/\`](instrumentos/) | Fichas de registro y evaluación |
-| [\`docs/reproducibilidad/\`](reproducibilidad/) | Auditorías y criterios de comparación |
+| [`dashboard/app.py`](../dashboard/app.py) | Interfaz interactiva Streamlit |
+| [`dashboard/iniciar_windows.bat`](../dashboard/iniciar_windows.bat) | Iniciador Windows |
+| [`scripts/run_all.py`](../scripts/run_all.py) | Secuencia de reproducción |
+| [`scripts/verify_outputs.py`](../scripts/verify_outputs.py) | Verificador básico del flujo |
+| [`src/radioenlace/`](../src/radioenlace/) | Implementación computacional |
+| [`config/analysis.yml`](../config/analysis.yml) | Parámetros del experimento |
+| [`data/raw/Datos.zip`](../data/raw/Datos.zip) | Archivo de datos originales |
+| [`results/tables/`](../results/tables/) | Tablas de resultados publicadas |
+| [`results/figures/`](../results/figures/) | Figuras publicadas |
+| [`docs/instrumentos/`](instrumentos/) | Fichas de registro y evaluación |
+| [`docs/reproducibilidad/`](reproducibilidad/) | Auditorías y criterios de comparación |
 
 ---
 
