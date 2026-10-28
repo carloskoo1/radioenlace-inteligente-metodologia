@@ -169,6 +169,19 @@ with tabs[7]:
                 else: status.update(label="Error: revisar registro",state="error")
             except subprocess.TimeoutExpired:
                 status.update(label="Tiempo máximo superado; revisar entorno",state="error")
+    if st.button("Comparar resultados recalculados con la versión publicada"):
+        audit=ROOT/"scripts"/"auditar_reproduccion.py"
+        if audit.exists() and exists("analysis_summary.json"):
+            result=subprocess.run([sys.executable,str(audit)],cwd=ROOT,
+                                  capture_output=True,text=True)
+            st.code((result.stdout+"\n"+result.stderr)[-12000:],language="json")
+            if result.returncode:
+                st.error("Existen diferencias con la versión científica publicada. Documentarlas antes de afirmar reproducibilidad exacta.")
+            else:
+                st.success("Las métricas principales auditadas coinciden con la referencia.")
+        else:
+            st.warning("Faltan resultados o el script de auditoría.")
+
     st.caption("La reproducción independiente exige guardar log de ejecución, "
                "versiones del entorno y comparaciones con tablas publicadas.")
 st.divider()
