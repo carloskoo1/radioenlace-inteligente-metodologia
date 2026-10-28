@@ -1,0 +1,9 @@
+# Entorno Linux para reproducir el estudio publicado, sin tocar sistemas de adquisición.
+# Basado en la rama candidata; el release v1.0.0 permanece inmutable.
+FROM python:3.12-slim-bookworm
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 MPLBACKEND=Agg
+WORKDIR /research
+COPY requirements.txt /research/requirements.txt
+RUN python -m pip install --no-cache-dir -r /research/requirements.txt
+COPY . /research
+CMD ["python", "scripts/run_all.py"]
