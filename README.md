@@ -95,3 +95,7 @@ La información de citación se encuentra en `CITATION.cff`. El código fuente s
 ## Material de sustentación y anexos instrumentales (octubre de 2026)
 
 Se incorporaron [materiales de apoyo a la sustentación](docs/sustentacion/README.md), un [visor HTML de resultados publicados](docs/sustentacion/demostracion_resultados_sustentacion.html) y las transcripciones de las fichas de los anexos 2–6 en [docs/instrumentos/](docs/instrumentos/). Estos materiales documentales son posteriores a la versión científica **v1.0.0**, que permanece fija e inalterada. El visor es didáctico y no ejecuta los modelos ni captura telemetría en tiempo real.
+
+## Dashboard ejecutable de demostración
+
+Se añadió [dashboard/app.py](dashboard/app.py) con [instrucciones de instalación](dashboard/README.md). Utiliza Streamlit para explorar salidas reales del pipeline y ejecutar el análisis nuevamente bajo demanda. Esta interfaz es **posterior al estudio**: no estaba desplegada sobre el radioenlace y no debe confundirse con telemetría en tiempo real. Requiere instalar también el archivo dashboard/requirements-dashboard.txt.
