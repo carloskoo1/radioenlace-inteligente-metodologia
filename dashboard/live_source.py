@@ -3,6 +3,7 @@
 Lee únicamente la base local de AtmosLink cuando el administrador la configura.
 No establece conexiones con radios, no modifica SQLite y no ejecuta modelos.
 """
+from contextlib import closing
 from datetime import datetime, timezone
 from pathlib import Path
 import sqlite3
@@ -31,7 +32,7 @@ def read_recent_ap(db_path, limit=180, stale_after_seconds=300):
         return {"status": "missing", "message": "La ruta configurada no corresponde a una base SQLite local disponible.", "rows": []}
     try:
         uri = path.resolve().as_uri() + "?mode=ro"
-        with sqlite3.connect(uri, uri=True, timeout=2) as conn:
+        with closing(sqlite3.connect(uri, uri=True, timeout=2)) as conn:
             conn.execute("PRAGMA query_only=ON")
             conn.row_factory = sqlite3.Row
             rows = [dict(r) for r in conn.execute(
