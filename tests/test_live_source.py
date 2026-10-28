@@ -42,8 +42,10 @@ class TestReadOnlyLiveSource(unittest.TestCase):
         self.assertEqual(read_recent_ap(str(self.path) + "missing")["status"], "missing")
 
     def test_stale_detected(self):
-        with sqlite3.connect(self.path) as c:
-            c.execute("UPDATE radio_link_local SET timestamp_local='2026-01-01T00:00:00-05:00'")
+        c = sqlite3.connect(self.path)
+        c.execute("UPDATE radio_link_local SET timestamp_local='2026-01-01T00:00:00-05:00'")
+        c.commit()
+        c.close()
         self.assertEqual(read_recent_ap(self.path)["status"], "stale")
 
 
