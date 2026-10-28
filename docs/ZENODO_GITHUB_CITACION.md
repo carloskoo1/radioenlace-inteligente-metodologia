@@ -24,7 +24,10 @@ Se verificó que la cuenta Zenodo ya estaba vinculada a GitHub, pero solo mostra
 
 - **Tipo:** Software.
 - **Título:** Metodología reproducible para el diagnóstico y pronóstico del radioenlace Cuñacales–San José.
-- **Autores:** Ubelser Tamay; Carlos Jesús Koo Labrín (según `CITATION.cff`).
+- **Autores, en orden de citación, con sus identificadores ORCID:**
+  1. **Ubelser Tamay** — [0009-0007-2020-2338](https://orcid.org/0009-0007-2020-2338).
+  2. **Carlos Jesús Koo Labrín** — [0000-0002-0323-2961](https://orcid.org/0000-0002-0323-2961).
+- **Archivo fuente de autoría:** [`CITATION.cff`](../CITATION.cff), con los ORCID y la afiliación de la Universidad Nacional de Cajamarca. La integración de Zenodo admite esta sintaxis sin añadir `.zenodo.json`.
 - **Afiliación:** Universidad Nacional de Cajamarca, Perú.
 - **Descripción:** Código, protocolos, datos, resultados y documentos complementarios para análisis temporal de telemetría RF de un radioenlace rural altoandino, con clasificación de estados operacionales proxy, detección de anomalías, pronóstico a 5, 15 y 30 minutos y evaluación temporal reproducida en Ubuntu/Python 3.12 sobre un commit controlado.
 - **Palabras clave:** rural wireless link; telemetry; machine learning; temporal validation; reproducibility; Andes; Peru.
@@ -41,3 +44,9 @@ La tesis completa no debe denominarse «aprobada», «sustentada» o «publicaci
 **Ficha Zenodo:** pendiente de publicación y verificación.
 
 Cuando se obtenga el DOI, actualizar este archivo y la sección de citación del README sin inventar metadatos.
+
+## Verificación de los autores antes de publicar
+
+Comprobar que Zenodo importe en este orden a **Ubelser Tamay (ORCID 0009-0007-2020-2338)** y **Carlos Jesús Koo Labrín (ORCID 0000-0002-0323-2961)**. Si no aparecen automáticamente en el depósito, corregir los creadores **antes** de publicar. El DOI **todavía está pendiente** y no se genera por disponer de ORCID.
+
+**Elección de metadatos:** Zenodo admite `CITATION.cff` y `.zenodo.json`, pero en presencia de ambos utiliza solo `.zenodo.json`; por ello, para este repositorio mantenemos un único origen autoritativo de los metadatos de software en `CITATION.cff`. Consulte [la documentación oficial de Zenodo](https://help.zenodo.org/docs/github/describe-software/citation-file/).
