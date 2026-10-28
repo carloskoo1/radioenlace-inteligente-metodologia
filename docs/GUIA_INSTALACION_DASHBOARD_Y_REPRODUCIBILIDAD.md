@@ -5,6 +5,8 @@
 **Propósito de esta guía:** permitir que otra persona, en una computadora distinta, pueda descargar el proyecto, abrir el dashboard y realizar pruebas de reproducción científica de manera documentada.  
 **Actualización:** 28 de octubre de 2026.
 
+**IMPORTANTE — se ha comprobado una reproducción integral satisfactoria en Linux/Python 3.12.** Consulte la [auditoría independiente verificada](reproducibilidad/AUDITORIA_LINUX_EXITOSA_2026-10-28.md). Los procedimientos Windows de la sección 7 se conservan para auditar diferencias entre plataformas, no como la vía recomendada para reproducir numéricamente el artículo o la tesis.
+
 > **Lea esta diferencia antes de empezar:** (A) *abrir el dashboard* significa ejecutar la interfaz para examinar **resultados históricos ya calculados**; (B) *reproducir el experimento* significa procesar los datos originales y calcular otra vez los resultados. Que A funcione **no demuestra** que B produzca exactamente las cifras publicadas. La auditoría disponible ha encontrado discrepancias de clasificación y alertas.
 
 ## 1. ¿Cuál es el producto de la tesis?
@@ -215,7 +217,7 @@ Para ver un análisis **ya realizado** de la discrepancia, consulte [Auditoría 
 | Verdaderos positivos de alertas | 723 publicados frente a 644 recalculados; **no coincide** |
 | Falsos positivos de alertas | 1 742 publicados frente a 1 327 recalculados; **no coincide** |
 
-**La reproducibilidad de los datos y de ciertos pronósticos está sustentada; la reproducibilidad numérica integral todavía no está demostrada.** La causa de las discrepancias del clasificador sigue bajo investigación. No atribuirla automáticamente a Python, a los hilos del procesador o al sistema operativo sin evidencia.
+**La reproducibilidad numérica integral fue comprobada en el entorno Linux/Python 3.12 indicado en la auditoría independiente. La equivalencia numérica en Windows nativo no está demostrada.** La causa de las discrepancias del clasificador sigue bajo investigación. No atribuirla automáticamente a Python, a los hilos del procesador o al sistema operativo sin evidencia.
 
 El repositorio principal contiene además [scripts/auditar_reproduccion.py](../scripts/auditar_reproduccion.py) (agregado después de `v1.0.0`) para comparar resultados recalculados con la referencia publicada. No se encuentra dentro de la etiqueta científica antigua. Si se utiliza, debe ejecutarse en una copia de auditoría que incluya ese script y conservar explícitamente qué versión de código y datos se evaluó.
 
