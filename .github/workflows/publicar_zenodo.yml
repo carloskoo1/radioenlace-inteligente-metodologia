@@ -10,7 +10,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: preservar-zenodo-v1.1.0
+  group: preservar-zenodo-v1.1.1
   cancel-in-progress: false
 
 jobs:
@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     env:
-      RELEASE_TAG: v1.1.0
+      RELEASE_TAG: v1.1.1
     steps:
       - name: Validar metadatos de citacion en un entorno aislado
         shell: bash
@@ -44,6 +44,8 @@ jobs:
           cat > "$RUNNER_TEMP/zenodo-release-notes.md" <<'NOTES'
           Versión de preservación del software científico y del cierre documental de la tesis de Ubelser Tamay.
 
+          Corrección de metadatos: el campo license de CITATION.cff contiene un único identificador SPDX para el código (MIT), compatible con Zenodo. La licencia CC BY 4.0 de datos y documentos se declara en LICENSE-DATA-DOCS y en la descripción.
+
           Incluye:
           - Código, datos y resultados históricos del radioenlace Cuñacales–San José.
           - Dashboard Streamlit y guía de instalación para terceros.
@@ -65,7 +67,7 @@ jobs:
           gh release create "$RELEASE_TAG" \
             --repo "$GITHUB_REPOSITORY" \
             --target "$GITHUB_SHA" \
-            --title "v1.1.0 - Software, dashboard y cierre documental de Ubelser Tamay" \
+            --title "v1.1.1 - Software, dashboard y cierre documental de Ubelser Tamay" \
             --notes-file "$RUNNER_TEMP/zenodo-release-notes.md"
           echo "Release publicada: https://github.com/$GITHUB_REPOSITORY/releases/tag/$RELEASE_TAG" >> "$GITHUB_STEP_SUMMARY"
 
@@ -78,10 +80,10 @@ jobs:
           version = os.environ["RELEASE_TAG"].lstrip("v")
           endpoint = "https://zenodo.org/api/records/?" + urllib.parse.urlencode(
               {"q": '"radioenlace-inteligente-metodologia"', "size": 25, "sort": "mostrecent"})
-          for attempt in range(12):
+          for attempt in range(6):
               try:
-                  request = urllib.request.Request(endpoint, headers={"User-Agent": "Ubelser-preservation-audit/1.1.0"})
-                  with urllib.request.urlopen(request, timeout=20) as response:
+                  request = urllib.request.Request(endpoint, headers={"User-Agent": "Ubelser-preservation-audit/1.1.1"})
+                  with urllib.request.urlopen(request, timeout=10) as response:
                       records = json.load(response).get("hits", {}).get("hits", [])
                   for record in records:
                       metadata = record.get("metadata", {})
@@ -98,7 +100,7 @@ jobs:
                   print("Zenodo: registro aun no visible; consulta", attempt + 1, flush=True)
               except Exception as exc:
                   print("Consulta publica de Zenodo:", type(exc).__name__, str(exc), flush=True)
-              if attempt < 11:
+              if attempt < 5:
                   time.sleep(20)
           print("::warning::La release esta publicada; el DOI sigue pendiente de verificacion publica.")
           PY
