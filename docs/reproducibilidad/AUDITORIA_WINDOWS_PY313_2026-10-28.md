@@ -49,3 +49,7 @@ Se preparó otro entorno virtual limpio con **Python 3.12** y las mismas version
 El núcleo terminó con **código 0**, pero volvió a obtener: F1-macro HGB **0,578739**, AUC **0,796705**, **644** verdaderos positivos de alerta y **1 327** falsos positivos. Estos resultados coincidieron con los obtenidos en Windows/Python 3.13 y no con los valores publicados v1.0.0. **El cambio de Python 3.13 a 3.12 no eliminó la diferencia.** No se ejecutó el análisis extendido completo en este segundo entorno durante esta comprobación; por ello, no corresponde afirmar una segunda reproducción integral.
 
 La causa permanece sin determinar. No debe atribuirse automáticamente a la versión de Python. Se recomienda inspeccionar determinismo de HistGradientBoosting, paralelismo, datos intermedios y procedencia exacta de las tablas selladas, antes de generar una versión corregida.
+
+## Tercera comprobación — Python 3.12 y un hilo de cálculo
+
+Se volvió a ejecutar `01_run_core.py` con Python 3.12 y las variables de entorno `OMP_NUM_THREADS=1`, `OPENBLAS_NUM_THREADS=1` y `MKL_NUM_THREADS=1`. Terminó con código 0 y **repitió exactamente las cifras del segundo ensayo**: F1-macro HGB 0,578739, AUC 0,796705, 644 verdaderos positivos y 1 327 falsos positivos. Limitar el número de hilos mediante estas variables **tampoco restauró las cifras publicadas** en Windows. No se ha contrastado aún contra una ejecución limpia Linux del mismo release.
