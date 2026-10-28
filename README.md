@@ -1,5 +1,9 @@
 # Sistema inteligente para el radioenlace Cuñacales–San José
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23748244.svg)](https://doi.org/10.5281/zenodo.23748244)
+
+**Versión preservada en Zenodo: v1.1.1 (28-10-2026).** [Abrir el depósito científico](https://zenodo.org/records/23748244). Incluye software, datos, dashboard, tesis de cierre documental y dictamen.
+
 Repositorio metodológico y reproducible de la investigación sobre diagnóstico y pronóstico operacional mediante analítica de datos temporales.
 
 **¿Quiere ejecutar el producto en otra computadora?** Consulte la [guía completa de instalación del dashboard y reproducción científica](docs/GUIA_INSTALACION_DASHBOARD_Y_REPRODUCIBILIDAD.md), con instrucciones para Windows, Linux/macOS, soluciones a errores y auditoría independiente de los resultados.
@@ -92,7 +96,7 @@ No incluya `.cdsapirc`, `.env`, claves, tokens, contraseñas, direcciones públi
 
 ## Cita y licencia
 
-La información de citación se encuentra en `CITATION.cff`. El código fuente se distribuye bajo licencia MIT. Los datos, documentos, tablas y figuras se publican bajo Creative Commons Atribución 4.0 Internacional (CC BY 4.0). La reutilización debe reconocer la autoría y citar el repositorio y la tesis asociada.
+La información de citación se encuentra en [`CITATION.cff`](CITATION.cff). **DOI de la versión v1.1.1:** [10.5281/zenodo.23748244](https://doi.org/10.5281/zenodo.23748244). **DOI general del software:** [10.5281/zenodo.23748243](https://doi.org/10.5281/zenodo.23748243). El código fuente se distribuye bajo licencia MIT. Los datos, documentos, tablas y figuras se publican bajo Creative Commons Atribución 4.0 Internacional (CC BY 4.0). La reutilización debe reconocer la autoría y citar el repositorio y la tesis asociada.
 
 ## Material de sustentación y anexos instrumentales (octubre de 2026)
 
@@ -117,6 +121,6 @@ Se añadió [dashboard/app.py](dashboard/app.py) con [instrucciones de instalaci
 
 - [**Tesis de Ubelser, cierre documental en Word (28-10-2026)**](docs/material_original/TESIS_UBELSER_TAMAY_CIERRE_DOCUMENTAL_2026-10-28.docx), con dedicatoria a sus padres y agradecimiento al Dr. Carlos Jesús Koo Labrín. **Versión de revisión final, no aprobación oficial.**
 - [**Dictamen técnico-académico de cierre (Word)**](docs/material_original/DICTAMEN_TECNICO_ACADEMICO_UBELSER_2026-10-28.docx) y [versión consultable en Markdown](docs/DICTAMEN_CIERRE_CIENTIFICO_UBELSER_2026-10-28.md): favorable al cierre científico con controles editoriales finales.
-- [**Guía para habilitar el depósito GitHub–Zenodo**](docs/ZENODO_GITHUB_CITACION.md), incluyendo metadatos propuestos y [acceso a la configuración de Zenodo](https://zenodo.org/account/settings/github/). **Aún no existe DOI verificado para este repositorio**.
+- [**Depósito, DOI y citación verificados en Zenodo**](docs/ZENODO_GITHUB_CITACION.md): registro público de v1.1.1, ambos ORCID comprobados, integridad del ZIP y procedimiento para futuras versiones. **DOI: [10.5281/zenodo.23748244](https://doi.org/10.5281/zenodo.23748244)**.
 
 La presentación que figura en `docs/material_original/` se identifica expresamente como **BASE**, no como la última presentación de defensa. El release científico `v1.0.0` no se modifica.
