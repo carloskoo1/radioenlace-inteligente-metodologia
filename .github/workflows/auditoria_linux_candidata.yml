@@ -1,0 +1,53 @@
+name: Auditoria independiente Linux - candidata
+
+on:
+  push:
+    branches:
+      - reproducibilidad-candidata-20261028
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - name: Checkout de version candidata inmutable por commit
+        uses: actions/checkout@v4
+      - name: Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Dependencias cientificas
+        run: python -m pip install -r requirements.txt
+      - name: Registrar versiones y origen
+        shell: bash
+        run: |
+          python --version | tee audit_python.txt
+          python -m pip freeze > audit_dependencies.txt
+          sha256sum data/raw/Datos.zip > audit_sha256.txt
+          git rev-parse HEAD > audit_commit.txt
+      - name: Ejecutar estudio completo y registrar cualquier discrepancia
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/run_all.py 2>&1 | tee audit_execution.log
+      - name: Guardar evidencias incluso si falla un verificador
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: auditoria-candidata-linux-py312
+          if-no-files-found: warn
+          retention-days: 30
+          path: |
+            audit_python.txt
+            audit_dependencies.txt
+            audit_sha256.txt
+            audit_commit.txt
+            audit_execution.log
+            results/tables/*.csv
+            results/tables/*.json
+            results/figures/*.png
