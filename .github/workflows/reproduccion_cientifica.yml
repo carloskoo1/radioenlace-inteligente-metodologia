@@ -1,0 +1,51 @@
+name: Reproduccion cientifica v1.0.0 (Linux)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - name: Clonar exactamente el release cientifico
+        uses: actions/checkout@v4
+        with:
+          ref: v1.0.0
+          persist-credentials: false
+      - name: Instalar Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Instalar versiones publicadas
+        run: python -m pip install -r requirements.txt
+      - name: Registrar entorno y huella de origen
+        run: |
+          python --version | tee entorno.log
+          python -m pip freeze >> entorno.log
+          sha256sum data/raw/Datos.zip | tee sha_origen.log
+          git rev-parse HEAD | tee version_repositorio.log
+      - name: Ejecutar flujo y verificador sin modificar la referencia
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/run_all.py 2>&1 | tee ejecucion_reproducible.log
+      - name: Publicar informes de esta ejecución (también si falla)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: auditoria-reproduccion-linux-py312
+          retention-days: 30
+          if-no-files-found: warn
+          path: |
+            entorno.log
+            sha_origen.log
+            version_repositorio.log
+            ejecucion_reproducible.log
+            results/tables/*.csv
+            results/tables/*.json
+            results/figures/*.png
