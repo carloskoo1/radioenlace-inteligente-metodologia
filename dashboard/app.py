@@ -4,7 +4,9 @@ import json
 import hashlib
 import subprocess
 import sys
+import os
 import pandas as pd
+from dashboard.live_source import read_recent_ap
 import streamlit as st
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -34,7 +36,7 @@ def downloadable(df, name, key):
                        file_name=name, mime="text/csv", key=key)
 
 tabs=st.tabs(["Producto","Calidad de datos","Diagnóstico","Pronóstico",
-              "Alertas","Anomalías","Explicabilidad","Reproducibilidad"])
+              "Alertas","Anomalías","Explicabilidad","Reproducibilidad","Telemetría actual"])
 with tabs[0]:
     st.subheader("¿Qué producto construyó la tesis?")
     st.markdown("El producto original es un **sistema computacional modular por lotes**: "
@@ -184,5 +186,60 @@ with tabs[7]:
 
     st.caption("La reproducción independiente exige guardar log de ejecución, "
                "versiones del entorno y comparaciones con tablas publicadas.")
+
+with tabs[8]:
+    st.subheader("Telemetría que se está adquiriendo actualmente")
+    st.caption("Extensión experimental de monitoreo histórico reciente, no parte de la evaluación original "
+               "de Ubelser. Esta vista consulta una base SQLite local en modo de SOLO LECTURA; "
+               "nunca interroga radios ni modifica el proceso de adquisición.")
+    @st.fragment(run_every="30s")
+    def live_monitor():
+        state = read_recent_ap(os.environ.get("UBELSER_LIVE_DB_PATH"),
+                               limit=180, stale_after_seconds=300)
+        if state["status"] == "unconfigured":
+            st.info("La fuente de datos actuales no está conectada en este equipo. "
+                    "Configure UBELSER_LIVE_DB_PATH con la ruta local autorizada "
+                    "de la base de AtmosLink del Controlador. "
+                    "No use rutas compartidas públicas ni publique credenciales.")
+            return
+        if state["status"] in ("missing", "error", "empty"):
+            st.warning(state["message"])
+            return
+        ts = state.get("last_timestamp", "No disponible")
+        age = state.get("age_seconds")
+        if state["status"] == "stale":
+            st.warning("Sin datos suficientemente recientes. Última lectura: " + ts)
+        else:
+            st.success("Fuente activa. Última lectura AP: " + ts)
+        config = state.get("config") or {}
+        if config:
+            st.caption("Banda reportada: " + str(config.get("frequency_band", "no disponible"))
+                       + " · Canal: " + str(config.get("channel_bandwidth_mhz", "?"))
+                       + " MHz. Son datos actuales; pueden diferir del escenario de la tesis.")
+        df = pd.DataFrame(state["rows"])
+        metrics = [("rssi_dl_dbm", "RSSI DL", "dBm"), ("snr_dl_db", "SNR DL", "dB"),
+                   ("mcs_dl", "MCS DL", ""), ("rate_dl_mbps", "Tasa DL negociada", "Mbps")]
+        cc = st.columns(4)
+        for (col, label, unit), colview in zip(metrics, cc):
+            val = pd.to_numeric(df[col], errors="coerce").iloc[-1]
+            colview.metric(label, (f"{val:.1f} {unit}" if pd.notna(val) else "Sin dato"))
+        df["timestamp_local"] = pd.to_datetime(df["timestamp_local"], errors="coerce")
+        df = df.dropna(subset=["timestamp_local"]).set_index("timestamp_local")
+        plot = pd.DataFrame(index=df.index)
+        for col, label, _ in metrics:
+            plot[label] = pd.to_numeric(df[col], errors="coerce")
+        selected = st.selectbox("Variable para graficar", plot.columns.tolist(),
+                                key="live_metric")
+        st.line_chart(plot[[selected]], height=300)
+        st.caption("Se actualiza cada 30 segundos. AP exclusivamente; no duplica registros SM. "
+                   "La antigüedad de los datos se verifica antes de mostrar «Fuente activa». "
+                   "La tasa DL es negociada, no throughput TCP. "
+                   "No se generan predicciones de fallas: los modelos históricos "
+                   "requieren validar compatibilidad y deriva de los datos actuales.")
+        st.download_button("Descargar ventana consultada (CSV)", data=plot.to_csv(),
+                           file_name="telemetria_actual_ap.csv",
+                           mime="text/csv", key="live_download")
+    live_monitor()
+
 st.divider()
-st.caption("Extensión de sustentación del sistema científico; no telemetría ni pronósticos en vivo.")
+st.caption("Extensión de investigación: telemetría histórica y monitoreo actual de solo lectura; los modelos de tesis no operan en tiempo real.")
