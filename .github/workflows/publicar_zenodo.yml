@@ -1,0 +1,104 @@
+name: Publicar version para Zenodo
+
+"on":
+  push:
+    branches: [main]
+    paths: [".github/workflows/publicar_zenodo.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: preservar-zenodo-v1.1.0
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      RELEASE_TAG: v1.1.0
+    steps:
+      - name: Validar metadatos de citacion en un entorno aislado
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m venv "$RUNNER_TEMP/cff-validation"
+          "$RUNNER_TEMP/cff-validation/bin/pip" install --quiet cffconvert==2.0.0
+          curl --fail --silent --show-error --location \
+            "https://raw.githubusercontent.com/$GITHUB_REPOSITORY/$GITHUB_SHA/CITATION.cff" \
+            --output "$RUNNER_TEMP/CITATION.cff"
+          "$RUNNER_TEMP/cff-validation/bin/cffconvert" --infile "$RUNNER_TEMP/CITATION.cff" --validate
+
+      - name: Publicar una nueva release sin modificar versiones anteriores
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "La release $RELEASE_TAG ya existe; se conserva sin modificaciones."
+            exit 0
+          fi
+          cat > "$RUNNER_TEMP/zenodo-release-notes.md" <<'NOTES'
+          Versión de preservación del software científico y del cierre documental de la tesis de Ubelser Tamay.
+
+          Incluye:
+          - Código, datos y resultados históricos del radioenlace Cuñacales–San José.
+          - Dashboard Streamlit y guía de instalación para terceros.
+          - Evidencia de reproducción de las métricas principales en Linux/Python 3.12, con el commit auditado identificado en la documentación.
+          - Tesis en Word, versión de cierre documental del 28 de octubre de 2026, y dictamen técnico-académico.
+          - ORCID de Ubelser Tamay (0009-0007-2020-2338) y Carlos Jesús Koo Labrín (0000-0002-0323-2961).
+
+          Alcance:
+          - La tesis se conserva como versión documental pendiente de aprobación académica.
+          - Los estados operacionales son etiquetas proxy; la tasa DL es la reportada por el radio.
+          - El dashboard es una extensión posterior al estudio. La telemetría reciente de respaldos es descriptiva y no acredita predicción validada en tiempo real.
+          - Se mantienen las discrepancias de Windows documentadas.
+          - La presentación incluida en docs/material_original se identifica como BASE.
+          - Código bajo MIT; datos y documentos bajo CC BY 4.0, según los archivos de licencia.
+          - La referencia científica v1.0.0 permanece inalterada.
+
+          Los metadatos para Zenodo se declaran en CITATION.cff. El DOI solo se considerará emitido después de comprobar el registro público en Zenodo.
+          NOTES
+          gh release create "$RELEASE_TAG" \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title "v1.1.0 - Software, dashboard y cierre documental de Ubelser Tamay" \
+            --notes-file "$RUNNER_TEMP/zenodo-release-notes.md"
+          echo "Release publicada: https://github.com/$GITHUB_REPOSITORY/releases/tag/$RELEASE_TAG" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Consultar la ingesta publica de Zenodo
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json, os, time, urllib.parse, urllib.request
+          repo = os.environ["GITHUB_REPOSITORY"]
+          version = os.environ["RELEASE_TAG"].lstrip("v")
+          endpoint = "https://zenodo.org/api/records/?" + urllib.parse.urlencode(
+              {"q": '"radioenlace-inteligente-metodologia"', "size": 25, "sort": "mostrecent"})
+          for attempt in range(12):
+              try:
+                  request = urllib.request.Request(endpoint, headers={"User-Agent": "Ubelser-preservation-audit/1.1.0"})
+                  with urllib.request.urlopen(request, timeout=20) as response:
+                      records = json.load(response).get("hits", {}).get("hits", [])
+                  for record in records:
+                      metadata = record.get("metadata", {})
+                      related = metadata.get("related_identifiers", [])
+                      matches = any("github.com/" + repo in item.get("identifier", "") for item in related)
+                      if matches and metadata.get("version", "").lstrip("v") == version:
+                          result = {"doi": record.get("doi"), "record_url": record.get("links", {}).get("self_html"),
+                                    "title": metadata.get("title"), "version": metadata.get("version"),
+                                    "creators": metadata.get("creators"), "license": metadata.get("license")}
+                          print(json.dumps(result, ensure_ascii=False, indent=2))
+                          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as stream:
+                              stream.write("\nRegistro Zenodo comprobado: https://doi.org/" + record["doi"] + "\n")
+                          raise SystemExit(0)
+                  print("Zenodo: registro aun no visible; consulta", attempt + 1, flush=True)
+              except Exception as exc:
+                  print("Consulta publica de Zenodo:", type(exc).__name__, str(exc), flush=True)
+              if attempt < 11:
+                  time.sleep(20)
+          print("::warning::La release esta publicada; el DOI sigue pendiente de verificacion publica.")
+          PY
