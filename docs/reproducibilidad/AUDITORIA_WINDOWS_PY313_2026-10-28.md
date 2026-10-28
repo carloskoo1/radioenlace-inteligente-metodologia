@@ -41,3 +41,11 @@ Esta auditoría **no invalida automáticamente** todos los resultados de la tesi
 5. Conservar la referencia v1.0.0 inmutable; cualquier corrección metodológica posterior debe publicarse con nueva versión, números y trazabilidad.
 
 *Este documento se refiere exclusivamente a la auditoría ejecutada sobre Windows/Python 3.13, no equivale a un resultado de Linux ni del entorno Python 3.12.*
+
+## Segunda comprobación — Python 3.12 en Windows
+
+Se preparó otro entorno virtual limpio con **Python 3.12** y las mismas versiones declaradas en `requirements.txt`. Se clonó otra copia limpia de la etiqueta `v1.0.0`, se verificó nuevamente el SHA-256 del archivo fuente y se ejecutaron las etapas `00_prepare_data.py` y `01_run_core.py` (núcleo científico).
+
+El núcleo terminó con **código 0**, pero volvió a obtener: F1-macro HGB **0,578739**, AUC **0,796705**, **644** verdaderos positivos de alerta y **1 327** falsos positivos. Estos resultados coincidieron con los obtenidos en Windows/Python 3.13 y no con los valores publicados v1.0.0. **El cambio de Python 3.13 a 3.12 no eliminó la diferencia.** No se ejecutó el análisis extendido completo en este segundo entorno durante esta comprobación; por ello, no corresponde afirmar una segunda reproducción integral.
+
+La causa permanece sin determinar. No debe atribuirse automáticamente a la versión de Python. Se recomienda inspeccionar determinismo de HistGradientBoosting, paralelismo, datos intermedios y procedencia exacta de las tablas selladas, antes de generar una versión corregida.
