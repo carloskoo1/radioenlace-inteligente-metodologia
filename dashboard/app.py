@@ -72,7 +72,7 @@ with tabs[2]:
     st.subheader("OE3 · Comparación del diagnóstico")
     if exists("classification_metrics.csv"):
         d=csv("classification_metrics.csv")
-        st.dataframe(d,hide_index=True,use_container_width=True)
+        st.dataframe(d,hide_index=True,width="stretch")
         st.caption("F1-macro pondera por igual las tres clases; AUC representa discriminación y no porcentaje de aciertos.")
         if exists("classification_bootstrap_comparison.csv"):
             q=csv("classification_bootstrap_comparison.csv").iloc[0]
@@ -80,7 +80,7 @@ with tabs[2]:
                        f'intervalo 95% [{q.ci_low:.3f}, {q.ci_high:.3f}]. '
                        'Incluye cero: la mejora no fue concluyente.')
         if exists("classification_confusion.csv"):
-            st.dataframe(csv("classification_confusion.csv",index_col=0),use_container_width=True)
+            st.dataframe(csv("classification_confusion.csv",index_col=0),width="stretch")
         downloadable(d,"diagnostico.csv","dl_clas")
 with tabs[3]:
     st.subheader("OE3 · Pronóstico de indicadores de radioenlace")
@@ -93,7 +93,7 @@ with tabs[3]:
                                format_func=lambda v:f"{v} minutos")
         v=d.loc[d.target.eq(metric)&d.horizon_min.eq(horizon)].copy()
         st.bar_chart(v.set_index("model")[["mae"]], y_label="MAE: error promedio (menor es mejor)")
-        st.dataframe(v[["model","n","mae","rmse","mape_pct"]],hide_index=True,use_container_width=True)
+        st.dataframe(v[["model","n","mae","rmse","mape_pct"]],hide_index=True,width="stretch")
         st.caption("Persistencia = utilizar el último valor. RMSE penaliza errores grandes. "
                    "La tasa DL es la negociada por el radio; NO throughput de aplicación.")
         if exists("forecast_test_predictions.csv"):
@@ -114,7 +114,7 @@ with tabs[4]:
     st.subheader("OE4 · Alertas anticipadas a 15 minutos")
     if exists("anticipation_metrics.csv"):
         a=csv("anticipation_metrics.csv")
-        st.dataframe(a,hide_index=True,use_container_width=True)
+        st.dataframe(a,hide_index=True,width="stretch")
         st.bar_chart(a.set_index("model")[["recall","false_alert_rate"]])
         row_hgb=a.loc[a.model.eq("HistGradientBoosting")].iloc[0]
         row_ref=a.loc[a.model.eq("Persistencia")].iloc[0]
@@ -132,14 +132,14 @@ with tabs[5]:
         st.metric("Anomalías reportadas en toda la serie", f'{summary()["anomaly_flags"]:,}' if exists("analysis_summary.json") else "No disponible")
         st.caption("Esta tabla contiene las 1 000 observaciones con puntuación más alta. "
                    "Anomalía estadística no significa automáticamente falla real.")
-        st.dataframe(d.head(200),hide_index=True,use_container_width=True)
+        st.dataframe(d.head(200),hide_index=True,width="stretch")
         downloadable(d,"anomalias.csv","dl_an")
 with tabs[6]:
     st.subheader("OE4 · Explicabilidad")
     if exists("classification_feature_importance.csv"):
         d=csv("classification_feature_importance.csv")
         st.bar_chart(d.nlargest(12,"importance_mean").set_index("feature")[["importance_mean"]],horizontal=True)
-        st.dataframe(d.head(20),hide_index=True,use_container_width=True)
+        st.dataframe(d.head(20),hide_index=True,width="stretch")
         st.caption("Importancia por permutación: menor F1 al alterar un indicador. "
                    "Es dependencia predictiva, no causalidad física.")
         downloadable(d,"importancia.csv","dl_imp")
