@@ -5,6 +5,7 @@ import hashlib
 import subprocess
 import sys
 import os
+import platform
 import pandas as pd
 from dashboard.live_source import read_recent_ap
 import streamlit as st
@@ -147,6 +148,18 @@ with tabs[6]:
         downloadable(d,"importancia.csv","dl_imp")
 with tabs[7]:
     st.subheader("Reproducción completa")
+    st.markdown("[Auditoría independiente exitosa en Linux/Python 3.12]"
+                "(https://github.com/carloskoo1/radioenlace-inteligente-metodologia/blob/main/docs/reproducibilidad/AUDITORIA_LINUX_EXITOSA_2026-10-28.md)")
+    if platform.system().lower() == "windows":
+        st.warning("Windows nativo puede generar diferencias de HistGradientBoosting "
+                   "respecto de las tablas publicadas (F1 y alertas). "
+                   "Para comparar numéricamente con la tesis use el entorno "
+                   "Linux/Python 3.12 documentado. Una falla del verificador "
+                   "en Windows no equivale a alteración de los datos.")
+    else:
+        st.info("La reproducción integral fue verificada en el entorno específico "
+                "Ubuntu/Python 3.12 de GitHub Actions. Otras variantes de Linux "
+                "deben contrastar los resultados y conservar su registro.")
     st.markdown("Código científico: versión fija 1.0.0. Semilla 42, "
                 "separación temporal 70/15/15 y bootstrap de 1 000 réplicas "
                 "por bloques de 60 minutos.")
