@@ -91,3 +91,7 @@ No incluya `.cdsapirc`, `.env`, claves, tokens, contraseñas, direcciones públi
 ## Cita y licencia
 
 La información de citación se encuentra en `CITATION.cff`. El código fuente se distribuye bajo licencia MIT. Los datos, documentos, tablas y figuras se publican bajo Creative Commons Atribución 4.0 Internacional (CC BY 4.0). La reutilización debe reconocer la autoría y citar el repositorio y la tesis asociada.
+
+## Material de sustentación y anexos instrumentales (octubre de 2026)
+
+Se incorporaron [materiales de apoyo a la sustentación](docs/sustentacion/README.md), un [visor HTML de resultados publicados](docs/sustentacion/demostracion_resultados_sustentacion.html) y las transcripciones de las fichas de los anexos 2–6 en [docs/instrumentos/](docs/instrumentos/). Estos materiales documentales son posteriores a la versión científica **v1.0.0**, que permanece fija e inalterada. El visor es didáctico y no ejecuta los modelos ni captura telemetría en tiempo real.
