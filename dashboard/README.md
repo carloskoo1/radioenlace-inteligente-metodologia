@@ -4,6 +4,8 @@
 
 No captura RF en tiempo real, no envía alarmas a la red y no realiza inferencia interactiva sobre equipos operativos. Los estados son **etiquetas proxy**, no incidencias confirmadas.
 
+**Para investigadores que quieran instalarlo en otra computadora:** [Guía completa paso a paso (Windows, Linux/macOS, verificación HTTP, solución de fallos y auditoría de reproducibilidad)](../docs/GUIA_INSTALACION_DASHBOARD_Y_REPRODUCIBILIDAD.md). El dashboard puede abrirse con las tablas publicadas sin necesidad de recalcular los modelos; una reproducción científica completa se ejecuta por separado.
+
 ## Ejecución local
 
 Se recomienda Python 3.12, usando un entorno virtual:
