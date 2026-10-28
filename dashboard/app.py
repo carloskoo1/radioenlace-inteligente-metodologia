@@ -116,15 +116,20 @@ with tabs[4]:
         a=csv("anticipation_metrics.csv")
         st.dataframe(a,hide_index=True,use_container_width=True)
         st.bar_chart(a.set_index("model")[["recall","false_alert_rate"]])
-        st.markdown("**723 de 1 548** condiciones futuras proxy anticipadas, frente a "
-                    "**549** con persistencia. Hubo más falsas alertas: **10,75%** frente a **6,10%**.")
+        row_hgb=a.loc[a.model.eq("HistGradientBoosting")].iloc[0]
+        row_ref=a.loc[a.model.eq("Persistencia")].iloc[0]
+        total=int(row_hgb.tp+row_hgb.fn)
+        st.markdown(f"**{int(row_hgb.tp):,} de {total:,}** condiciones futuras proxy "
+                    f"anticipadas frente a **{int(row_ref.tp):,}** con persistencia. "
+                    f"Falsas alertas: **{100*row_hgb.false_alert_rate:.2f}%** frente a "
+                    f"**{100*row_ref.false_alert_rate:.2f}%**.")
         st.warning("Las alertas son una ayuda preventiva. No demuestran detección de fallas verificadas.")
         downloadable(a,"alertas.csv","dl_al")
 with tabs[5]:
     st.subheader("Identificación de anomalías")
     if exists("top_anomalies.csv"):
         d=csv("top_anomalies.csv")
-        st.metric("Anomalías reportadas en toda la serie", "1 093")
+        st.metric("Anomalías reportadas en toda la serie", f'{summary()["anomaly_flags"]:,}' if exists("analysis_summary.json") else "No disponible")
         st.caption("Esta tabla contiene las 1 000 observaciones con puntuación más alta. "
                    "Anomalía estadística no significa automáticamente falla real.")
         st.dataframe(d.head(200),hide_index=True,use_container_width=True)
