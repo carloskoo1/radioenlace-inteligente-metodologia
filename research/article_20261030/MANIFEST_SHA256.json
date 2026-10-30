@@ -1,0 +1,12 @@
+{
+  "README.md": "1d23f95e911c9ff09e34da2a2fb594a84ade1443c4e63aa298ef58bffe084c10",
+  "add_baselines.py": "628995b6f4036e7190cba6f51e7020e9dbf56c096be437f59ad967d80167603f",
+  "reanalyse.py": "3d29713374d1c70346577a6f3a3365dc0b3efac53cdbae7745512e806c366220",
+  "results/bootstrap_calendar.csv": "14a439a5a3d8fa507d092256fd505b5f9a744c82bb83cfecde51040279458636",
+  "results/bootstrap_stronger_baselines.csv": "9acb74d437470b6bf59890bc364eb19e9a5d407b0a296a079c7992213babff9e",
+  "results/boundary_audit.csv": "162578c288cc216552f07faac97264d9cc01205696f532c9b1aa6551add572b9",
+  "results/pooled_metrics.csv": "50be6b78663519ba000d0a884474b700da8248b7f32936d9914e5ced3935f3cf",
+  "results/rolling_metrics.csv": "09c37cb8de7f9d7d79d29cc994a48e4d78d6e4b419134d2eb2256ff34587c888",
+  "results/splits.csv": "fe32c001f8e6636fad198e0cf4947db3f36d920e2c40537988535d7843a2f131",
+  "results/summary.json": "b173de75eb143767f6d2172c01695147f87c73c0e0c8c49398487ec5f6ed7c51"
+}

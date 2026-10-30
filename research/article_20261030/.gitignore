@@ -1,0 +1,4 @@
+results/predictions.csv.gz
+results/minute_master.csv.gz
+results/*.tmp.gz
+__pycache__/

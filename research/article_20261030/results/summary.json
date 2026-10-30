@@ -1,0 +1,62 @@
+{
+  "raw_files": 90,
+  "raw_ap_rows": 173513,
+  "minutes": 180025,
+  "observed_minutes": 118458,
+  "target_observed": 118458,
+  "start": "2026-01-26 00:00:00-05:00",
+  "end": "2026-05-31 00:24:00-05:00",
+  "mcs_dl_raw_unique": [
+    100.0,
+    101.0,
+    102.0,
+    103.0,
+    104.0,
+    105.0,
+    106.0,
+    107.0,
+    200.0,
+    201.0,
+    202.0,
+    203.0,
+    204.0,
+    205.0,
+    206.0
+  ],
+  "mcs_dl_minute_noninteger": 20832,
+  "dl_rate_raw_examples": [
+    "137M",
+    "154M",
+    "103M",
+    "68M",
+    "86M",
+    "51M",
+    "77M",
+    "17M",
+    "8M",
+    "34M"
+  ],
+  "seed": 42,
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "packages": {
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.8.0",
+    "scipy": "1.17.0",
+    "threadpoolctl": "3.6.0"
+  },
+  "raw_sha256": "786a037e749ce0c5bf7b3d8bd66f419a0a76de809c68857534e03487fc922bfa",
+  "features": {
+    "RF_noMCS": 64,
+    "RF_withMCS": 88,
+    "Rate_only": 16
+  },
+  "primary_model": "Ridge_RF_noMCS",
+  "primary_metric": "MAE",
+  "primary_horizon_minutes": 15,
+  "selection": "Fixed thesis hyperparameters; no tuning or test-based selection in this extension.",
+  "hgb_early_stopping": false,
+  "additional_baselines": "Means 15/60, median 60, and training constants added as exploratory sensitivity after the first execution; all results retained.",
+  "scope": "Retrospective robustness on previously analysed link; no independent external validation."
+}
