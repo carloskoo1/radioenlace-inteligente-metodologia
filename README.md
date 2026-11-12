@@ -126,3 +126,8 @@ Se añadió [dashboard/app.py](dashboard/app.py) con [instrucciones de instalaci
 - [**Depósito, DOI y citación verificados en Zenodo**](docs/ZENODO_GITHUB_CITACION.md): registro público de v1.1.1, ambos ORCID comprobados, integridad del ZIP y procedimiento para futuras versiones. **DOI: [10.5281/zenodo.23748244](https://doi.org/10.5281/zenodo.23748244)**.
 
 La presentación que figura en `docs/material_original/` se identifica expresamente como **BASE**, no como la última presentación de defensa. El release científico `v1.0.0` no se modifica.
+
+
+### Auditoría adversarial final — noviembre de 2026
+
+Las dos pruebas computacionales pendientes de la tesis (purga de etiquetas que cruzan fronteras temporales y sensibilidad del bootstrap a la definición y longitud de los bloques) **se ejecutaron satisfactoriamente** el 12 de noviembre de 2026. Se conservaron el código y los datos científicos `v1.0.0` sin alteraciones. [Consultar resultados, límites inferenciales y enlaces a las dos ejecuciones reproducibles](docs/reproducibilidad/AUDITORIA_FINAL_PURGA_BLOQUES_2026-11-12.md). El F1-macro del clasificador no acredita superioridad robusta bajo todos los bloques evaluados; la hipótesis general mantiene respaldo parcial.
