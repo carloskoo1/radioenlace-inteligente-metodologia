@@ -1,0 +1,58 @@
+name: Auditoria final Ubelser - purga y bootstrap
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/auditoria_final_ubelser.yml"
+      - "scripts/auditoria_final_purga_y_bloques.py"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 80
+    steps:
+      - name: Copia cientifica v1.0.0 y codigo de auditoria
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Preparar Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Crear sandbox cientifico inmutable
+        run: |
+          mkdir -p audit_baseline
+          git archive v1.0.0 | tar -x -C audit_baseline
+          cp scripts/auditoria_final_purga_y_bloques.py audit_baseline/scripts/auditoria_final_purga_y_bloques.py
+          sha256sum audit_baseline/data/raw/Datos.zip | tee sha_datos_auditoria.log
+          git rev-parse v1.0.0 | tee commit_cientifico_auditado.log
+      - name: Instalar librerias del release
+        run: python -m pip install -r audit_baseline/requirements.txt
+      - name: Ejecutar flujo principal en el sandbox
+        working-directory: audit_baseline
+        run: |
+          set -o pipefail
+          python scripts/00_prepare_data.py 2>&1 | tee preparacion.log
+          python scripts/01_run_core.py 2>&1 | tee flujo_principal.log
+      - name: Ejecutar auditoria adversarial independiente
+        working-directory: audit_baseline
+        run: |
+          set -o pipefail
+          python scripts/auditoria_final_purga_y_bloques.py 2>&1 | tee auditoria.log
+      - name: Almacenar evidencias incluso si falla
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: auditoria-ubelser-purga-bootstrap
+          retention-days: 90
+          if-no-files-found: warn
+          path: |
+            sha_datos_auditoria.log
+            commit_cientifico_auditado.log
+            audit_baseline/preparacion.log
+            audit_baseline/flujo_principal.log
+            audit_baseline/auditoria.log
+            audit_baseline/audit_sensitivity/*.json
+            audit_baseline/audit_sensitivity/*.csv
