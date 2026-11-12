@@ -1,0 +1,48 @@
+name: Auditoria cientifica Ubelser - sensibilidad temporal
+
+on:
+  push:
+    paths:
+      - ".github/workflows/auditoria_temporal.yml"
+      - "scripts/auditoria_sensibilidad_temporal_20261112.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  auditoria:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+      - name: Instalar dependencias del proyecto
+        run: python -m pip install -r requirements.txt
+      - name: Generar resultados de referencia en copia efimera del runner
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/run_all.py 2>&1 | tee reproduccion_base.log
+      - name: Analizar etiquetas en fronteras y bootstrap
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/auditoria_sensibilidad_temporal_20261112.py 2>&1 | tee auditoria_sensibilidad.log
+      - name: Publicar evidencia aun si falla
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ubelser-sensibilidad-20261112
+          if-no-files-found: warn
+          retention-days: 30
+          path: |
+            reproduccion_base.log
+            auditoria_sensibilidad.log
+            audit/sensibilidad_20261112/*.json
+            audit/sensibilidad_20261112/*.csv
