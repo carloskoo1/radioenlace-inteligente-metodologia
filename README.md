@@ -142,3 +142,10 @@ La auditoría adversarial de la **tesis V26C → V27** documentó la alineación
 - **Zenodo `v1.1.1`**: DOI histórico [10.5281/zenodo.23748244](https://doi.org/10.5281/zenodo.23748244), **sin cambios**. Se emitirá un DOI de una nueva versión únicamente después de subir y verificar la nueva tesis.
 
 La V27 conserva las valoraciones auténticas de los tres especialistas, con observaciones. La publicación de facsímiles con firmas requiere autorización de divulgación apropiada o una copia pública que las oculte.
+
+
+### Estado de preservación v1.2.0 (18-11-2026)
+
+- **Release GitHub confirmada:** [v1.2.0 — Tesis V27 revisada](https://github.com/carloskoo1/radioenlace-inteligente-metodologia/releases/tag/v1.2.0), con archivo público [Word V27](https://github.com/carloskoo1/radioenlace-inteligente-metodologia/blob/v1.2.0/docs/tesis/TESIS_UBELSER_V27_PUBLICA_OPTIMIZADA_20261118.docx).
+- **Verificación automática:** [GitHub Actions 44455235286](https://github.com/carloskoo1/radioenlace-inteligente-metodologia/actions/runs/44455235286) — archivo íntegro y `CITATION.cff` válidos; release creada correctamente.
+- **Zenodo:** el sondeo automatizado no encontró un DOI nuevo para `v1.2.0` durante la ejecución. **No atribuir el DOI de `v1.1.1` a esta versión.** Verificar en [Zenodo → GitHub](https://zenodo.org/account/settings/github/) el estado de ingesta, errores y DOI antes de citar `v1.2.0` como depositada.
