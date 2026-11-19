@@ -131,3 +131,14 @@ La presentación que figura en `docs/material_original/` se identifica expresame
 ### Auditoría adversarial final — noviembre de 2026
 
 Las dos pruebas computacionales pendientes de la tesis (purga de etiquetas que cruzan fronteras temporales y sensibilidad del bootstrap a la definición y longitud de los bloques) **se ejecutaron satisfactoriamente** el 12 de noviembre de 2026. Se conservaron el código y los datos científicos `v1.0.0` sin alteraciones. [Consultar resultados, límites inferenciales y enlaces a las dos ejecuciones reproducibles](docs/reproducibilidad/AUDITORIA_FINAL_PURGA_BLOQUES_2026-11-12.md). El F1-macro del clasificador no acredita superioridad robusta bajo todos los bloques evaluados; la hipótesis general mantiene respaldo parcial.
+
+
+### Revisión académica V27 — 18 de noviembre de 2026
+
+La auditoría adversarial de la **tesis V26C → V27** documentó la alineación explícita entre preguntas P1–P4, objetivos OE1–OE4, hipótesis HE1–HE4, operacionalización, técnicas, instrumentos, resultados y conclusiones; corrigió la numeración de tres citas de Medina Romero ([35]), amplió la matriz de consistencia, reescribió Resumen/Abstract y verificó la sección **4.7 de contrastación**. Las métricas históricas no se alteraron.
+
+- [**Informe científico y matriz de trazabilidad V27**](docs/tesis/AUDITORIA_ADVERSARIAL_V27_2026-11-18.md).
+- **Archivo Word V27 en preparación de publicación binaria.** SHA-256 de la copia revisada: `38f16f9c036deae734fa1d7991f7ee2ad4e5de087e8463b73bfe78018054d70a`. Esta copia todavía **no está incorporada** en el repositorio.
+- **Zenodo `v1.1.1`**: DOI histórico [10.5281/zenodo.23748244](https://doi.org/10.5281/zenodo.23748244), **sin cambios**. Se emitirá un DOI de una nueva versión únicamente después de subir y verificar la nueva tesis.
+
+La V27 conserva las valoraciones auténticas de los tres especialistas, con observaciones. La publicación de facsímiles con firmas requiere autorización de divulgación apropiada o una copia pública que las oculte.
