@@ -86,3 +86,14 @@ El primer intento, **v1.1.0**, fue rechazado con `Citation metadata load failed`
 La versión **v1.1.1** utiliza un valor escalar `license: MIT` y explica por separado el alcance de CC BY 4.0. Zenodo la archivó correctamente. La release v1.1.0 se conserva como trazabilidad del intento fallido; el depósito público verificado corresponde a v1.1.1.
 
 Referencias oficiales: [habilitar un repositorio](https://help.zenodo.org/docs/github/enable-repository/), [metadatos CITATION.cff](https://help.zenodo.org/docs/github/describe-software/citation-file/) y [errores de importación](https://support.zenodo.org/help/en-gb/24-github-integration/204-why-does-my-github-release-fail-with-an-error).
+
+
+## Nota de versión — auditoría académica V27 (18/11/2026)
+
+**No modificar ni reasignar el DOI de la versión archivada.** El registro público `10.5281/zenodo.23748244` corresponde a `v1.1.1` del 28/10/2026. La nueva auditoría adversarial V27, [documentada en GitHub](tesis/AUDITORIA_ADVERSARIAL_V27_2026-11-18.md), incluye correcciones sobre la formulación de preguntas, la correspondencia con objetivos e hipótesis, la matriz de consistencia, la ubicación de la contrastación, el resumen/abstract y referencias técnicas.
+
+El archivo Word revisado **todavía no forma parte de ninguna release ni depósito nuevo en Zenodo**. SHA-256 local: `38f16f9c036deae734fa1d7991f7ee2ad4e5de087e8463b73bfe78018054d70a`.
+
+**Secuencia para crear una nueva versión de archivo:** incorporar V27 a GitHub preservando una copia privada de las fichas firmadas, comprobar integridad y licencia; crear una nueva release (p. ej. `v1.2.0`) cuando el contenido esté realmente completo; verificar la ingesta en Zenodo y recuperar el nuevo DOI de versión; actualizar `CITATION.cff` y el README conforme al DOI efectivamente asignado.
+
+El código de experimentación `v1.0.0` y las releases `v1.1.x` ya archivadas permanecen inalterados.
