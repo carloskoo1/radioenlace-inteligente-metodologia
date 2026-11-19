@@ -138,7 +138,7 @@ Las dos pruebas computacionales pendientes de la tesis (purga de etiquetas que c
 La auditoría adversarial de la **tesis V26C → V27** documentó la alineación explícita entre preguntas P1–P4, objetivos OE1–OE4, hipótesis HE1–HE4, operacionalización, técnicas, instrumentos, resultados y conclusiones; corrigió la numeración de tres citas de Medina Romero ([35]), amplió la matriz de consistencia, reescribió Resumen/Abstract y verificó la sección **4.7 de contrastación**. Las métricas históricas no se alteraron.
 
 - [**Informe científico y matriz de trazabilidad V27**](docs/tesis/AUDITORIA_ADVERSARIAL_V27_2026-11-18.md).
-- **Archivo Word V27 en preparación de publicación binaria.** SHA-256 de la copia revisada: `38f16f9c036deae734fa1d7991f7ee2ad4e5de087e8463b73bfe78018054d70a`. Esta copia todavía **no está incorporada** en el repositorio.
+- **Tesis V27 ya publicada en GitHub:** [copia pública optimizada](docs/tesis/TESIS_UBELSER_V27_PUBLICA_OPTIMIZADA_20261118.docx), sin imágenes de firmas, SHA-256 `04c1f4b4b220e5653dc363fdea5014783c6d74ddc06fa6b39b96fe94053fa959`. El ejemplar íntegro con firmas se conserva en el expediente reservado; su SHA-256 es `38f16f9c036deae734fa1d7991f7ee2ad4e5de087e8463b73bfe78018054d70a`.
 - **Zenodo `v1.1.1`**: DOI histórico [10.5281/zenodo.23748244](https://doi.org/10.5281/zenodo.23748244), **sin cambios**. Se emitirá un DOI de una nueva versión únicamente después de subir y verificar la nueva tesis.
 
 La V27 conserva las valoraciones auténticas de los tres especialistas, con observaciones. La publicación de facsímiles con firmas requiere autorización de divulgación apropiada o una copia pública que las oculte.
