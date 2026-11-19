@@ -1,6 +1,6 @@
 # Auditoría adversarial de cierre — Tesis de Ubelser Tamay, versión V27 (18 de noviembre de 2026)
 
-**Estado del documento:** revisión académica avanzada en Word, aún pendiente de incorporar como archivo binario a este repositorio y a una nueva versión de Zenodo. No confundir esta revisión con la release preservada `v1.1.1` ni con una aprobación oficial de jurado.
+**Estado del documento:** copia pública revisada V27 incorporada a GitHub; nuevo DOI de Zenodo pendiente de ingesta y verificación. No confundir esta revisión con la release preservada `v1.1.1` ni con una aprobación oficial de jurado.
 
 **Archivo revisado:** `TESIS_UBELSER_AUDITORIA_ADVERSARIAL_V27_20261118.docx`  
 **SHA-256 del Word revisado:** `38f16f9c036deae734fa1d7991f7ee2ad4e5de087e8463b73bfe78018054d70a`  
@@ -58,7 +58,7 @@ Se preparó un ejemplar de publicación de **103 páginas**, con resultados, tab
 - SHA-256: `d466d42d1ce4e14bdeb059d8db9925fd5c2e8622a095b8b2a64d06b7bad04733`.
 - Ruta prevista en GitHub: `docs/tesis/TESIS_UBELSER_V27_COPIA_PUBLICA_SIN_FIRMAS_20261118.docx`.
 
-**No declarar que el archivo está publicado hasta encontrarlo en el árbol GitHub con el SHA indicado.** La copia completa, con las fichas firmadas, se conserva en Google Drive bajo acceso de propietario y no se destina a publicación abierta.
+**Archivo público verificado en GitHub:** [descargar V27 optimizada](TESIS_UBELSER_V27_PUBLICA_OPTIMIZADA_20261118.docx) — 1 206 277 bytes; SHA-256 `04c1f4b4b220e5653dc363fdea5014783c6d74ddc06fa6b39b96fe94053fa959`. La copia pública tiene 103 páginas; contiene las tablas y resultados sin imágenes de firmas. La copia completa, con las fichas firmadas, se conserva en Google Drive bajo acceso de propietario y no se destina a publicación abierta.
 
 ## Alcance archivístico y preservación
 
