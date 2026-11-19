@@ -2,9 +2,9 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23748244.svg)](https://doi.org/10.5281/zenodo.23748244)
 
-**Versión preservada en Zenodo: v1.1.1 (28-10-2026).** [Abrir el depósito científico](https://zenodo.org/records/23748244). Incluye software, datos, dashboard, tesis de cierre documental y dictamen.
+**Versión GitHub más reciente: v1.2.0 (18-11-2026), con tesis V27 revisada.** [Abrir el release](https://github.com/carloskoo1/radioenlace-inteligente-metodologia/releases/tag/v1.2.0). **El DOI de Zenodo mostrado en la insignia corresponde exclusivamente a v1.1.1**, depósito histórico del 28-10-2026, no a v1.2.0. [Consultar el depósito histórico](https://zenodo.org/records/23748244). La asignación de DOI nuevo para v1.2.0 sigue pendiente de confirmación.
 
-**Tesis final para entrega:** [descargar Word con citas y referencias IEEE](docs/entrega_final/TESIS_UBELSER_TAMAY_FINAL_IEEE_2026-10-28.docx). Contiene 30 referencias, 74 citas y los índices y la compaginación verificados. Esta revisión editorial es posterior al depósito Zenodo v1.1.1; consulte su [registro de revisión](docs/entrega_final/README.md).
+**Tesis académica revisada más reciente (V27):** [descargar Word público V27](docs/tesis/TESIS_UBELSER_V27_PUBLICA_OPTIMIZADA_20261118.docx). Incluye la auditoría adversarial de trazabilidad entre preguntas, objetivos, variables, instrumentos, resultados, contrastación y conclusiones. La [versión editorial histórica del 28-10-2026](docs/entrega_final/TESIS_UBELSER_TAMAY_FINAL_IEEE_2026-10-28.docx) se conserva para trazabilidad, pero no debe confundirse con V27.
 
 Repositorio metodológico y reproducible de la investigación sobre diagnóstico y pronóstico operacional mediante analítica de datos temporales.
 
