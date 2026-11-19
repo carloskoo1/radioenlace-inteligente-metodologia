@@ -1,0 +1,115 @@
+name: Publicar Ubelser V27 para Zenodo (v1.2.0)
+
+"on":
+  push:
+    branches: [main]
+    paths: [".github/workflows/publicar_zenodo_v1_2_0.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: preservar-zenodo-ubelser-v1.2.0
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    env:
+      TAG: v1.2.0
+      WORD: docs/tesis/TESIS_UBELSER_V27_PUBLICA_OPTIMIZADA_20261118.docx
+      EXPECTED_SHA256: 04c1f4b4b220e5653dc363fdea5014783c6d74ddc06fa6b39b96fe94053fa959
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verificar que la tesis V27 exacta exista en GitHub
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f "$WORD"
+          echo "$EXPECTED_SHA256  $WORD" | sha256sum --check
+          python3 - <<'PY'
+          import zipfile, os
+          p=os.environ["WORD"]
+          with zipfile.ZipFile(p) as z:
+              assert "word/document.xml" in z.namelist()
+              xml=z.read("word/document.xml").decode("utf-8")
+              assert "Custodia de los originales firmados" in xml
+              assert "V de Aiken" in xml
+          print("Archivo Word público V27 verificado y sin facsímiles firmados")
+          PY
+      - name: Validar metadatos de citación
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m venv "$RUNNER_TEMP/cff-validation"
+          "$RUNNER_TEMP/cff-validation/bin/pip" -q install cffconvert==2.0.0
+          "$RUNNER_TEMP/cff-validation/bin/cffconvert" --infile CITATION.cff --validate
+          grep -q '^version: 1.2.0$' CITATION.cff
+          grep -q '0009-0007-2020-2338' CITATION.cff
+          grep -q '0000-0002-0323-2961' CITATION.cff
+          if grep -q '^doi:' CITATION.cff; then
+              echo "::error::No incluir DOI antiguo en CITATION.cff antes de emitir nueva versión"
+              exit 1
+          fi
+      - name: Crear release de GitHub para ingesta Zenodo
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "Release $TAG ya existe y se conserva sin cambiarla."
+            exit 0
+          fi
+          cat > "$RUNNER_TEMP/release-v1.2.0.md" <<'NOTES'
+          Versión documental de la tesis de Ubelser Tamay y auditoría adversarial asociada al software científico reproducible.
+
+          Incluye:
+          - Tesis V27 revisada (copia pública de 103 páginas sin facsímiles de firmas).
+          - Coherencia entre preguntas, objetivos, hipótesis, variables, indicadores, técnicas, instrumentos, resultados y conclusiones.
+          - Juicio de contenido de tres especialistas y matriz de subsanación; V de Aiken global descriptiva = 0,844.
+          - Resumen y abstract revisados, referencias metodológicas corregidas y contrastación visible en sección 4.7.
+          - Código histórico v1.0.0 y auditorías de sensibilidad temporal y bootstrap preservados.
+          - ORCID: Ubelser Tamay 0009-0007-2020-2338; Carlos Jesús Koo Labrín 0000-0002-0323-2961.
+
+          El sistema es un prototipo ejecutable por lotes; no se declara detección verificada de averías físicas ni predicción de producción en tiempo real. El respaldo de la hipótesis general es parcial. Las fichas de evaluación firmadas se conservan en el expediente reservado.
+
+          La release anterior v1.1.1 y su DOI de Zenodo 10.5281/zenodo.23748244 son históricos y permanecen inalterados. La asignación del DOI de esta nueva release corresponde a Zenodo.
+          NOTES
+          gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA"             --title "v1.2.0 - Tesis V27 Ubelser y validación de instrumentos"             --notes-file "$RUNNER_TEMP/release-v1.2.0.md"
+          echo "Nueva release: https://github.com/$GITHUB_REPOSITORY/releases/tag/$TAG" >> "$GITHUB_STEP_SUMMARY"
+      - name: Consultar asignación del DOI en Zenodo
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json, os, time, urllib.parse, urllib.request
+          repo=os.environ["GITHUB_REPOSITORY"]
+          q='"radioenlace-inteligente-metodologia"'
+          endpoint="https://zenodo.org/api/records/?" + urllib.parse.urlencode({"q":q,"size":25,"sort":"mostrecent"})
+          found=False
+          for attempt in range(9):
+              try:
+                  req=urllib.request.Request(endpoint,headers={"User-Agent":"Ubelser-V27-preservation/1.2.0"})
+                  with urllib.request.urlopen(req, timeout=12) as response:
+                      records=json.load(response).get("hits",{}).get("hits",[])
+                  for record in records:
+                      md=record.get("metadata",{})
+                      related=md.get("related_identifiers",[])
+                      repo_match=any("github.com/"+repo in r.get("identifier","") for r in related)
+                      v=str(md.get("version","")).lstrip("v")
+                      if repo_match and v=="1.2.0" and record.get("doi"):
+                          url=record.get("links",{}).get("self_html") or "https://doi.org/"+record["doi"]
+                          print("ZENODO_VERSION",json.dumps({"doi":record["doi"],"url":url,"version":v},ensure_ascii=False))
+                          with open(os.environ["GITHUB_STEP_SUMMARY"],"a",encoding="utf-8") as fp:
+                              fp.write("\nZenodo DOI confirmado: https://doi.org/"+record["doi"]+"\n")
+                          found=True
+                          break
+                  if found:break
+                  print("Zenodo todavía no publica la versión 1.2.0; intento",attempt+1,flush=True)
+              except Exception as exc:
+                  print(type(exc).__name__,str(exc),flush=True)
+              if attempt < 8: time.sleep(15)
+          if not found:print("::warning::Release publicada; DOI de Zenodo aún no verificado. No inventarlo.")
+          PY
