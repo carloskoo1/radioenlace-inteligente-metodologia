@@ -92,8 +92,8 @@ Referencias oficiales: [habilitar un repositorio](https://help.zenodo.org/docs/g
 
 **No modificar ni reasignar el DOI de la versión archivada.** El registro público `10.5281/zenodo.23748244` corresponde a `v1.1.1` del 28/10/2026. La nueva auditoría adversarial V27, [documentada en GitHub](tesis/AUDITORIA_ADVERSARIAL_V27_2026-11-18.md), incluye correcciones sobre la formulación de preguntas, la correspondencia con objetivos e hipótesis, la matriz de consistencia, la ubicación de la contrastación, el resumen/abstract y referencias técnicas.
 
-El archivo Word revisado **todavía no forma parte de ninguna release ni depósito nuevo en Zenodo**. SHA-256 local: `38f16f9c036deae734fa1d7991f7ee2ad4e5de087e8463b73bfe78018054d70a`.
+La [tesis V27 pública](tesis/TESIS_UBELSER_V27_PUBLICA_OPTIMIZADA_20261118.docx) **ya se publicó en GitHub main** sin imágenes de firmas. Aún requiere una **nueva release** y verificación de ingesta en Zenodo para asignar un DOI de versión propio. SHA-256 local: `38f16f9c036deae734fa1d7991f7ee2ad4e5de087e8463b73bfe78018054d70a`.
 
-**Secuencia para crear una nueva versión de archivo:** incorporar V27 a GitHub preservando una copia privada de las fichas firmadas, comprobar integridad y licencia; crear una nueva release (p. ej. `v1.2.0`) cuando el contenido esté realmente completo; verificar la ingesta en Zenodo y recuperar el nuevo DOI de versión; actualizar `CITATION.cff` y el README conforme al DOI efectivamente asignado.
+**Secuencia para crear una nueva versión de archivo:** copia pública V27 incorporada y checksum registrado; crear una nueva release (`v1.2.0`) con metadatos `CITATION.cff` actualizados; verificar la ingesta en Zenodo y recuperar el nuevo DOI de versión; actualizar `CITATION.cff` y el README conforme al DOI efectivamente asignado.
 
 El código de experimentación `v1.0.0` y las releases `v1.1.x` ya archivadas permanecen inalterados.
