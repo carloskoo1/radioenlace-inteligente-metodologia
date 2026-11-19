@@ -97,3 +97,10 @@ La [tesis V27 pública](tesis/TESIS_UBELSER_V27_PUBLICA_OPTIMIZADA_20261118.docx
 **Secuencia para crear una nueva versión de archivo:** copia pública V27 incorporada y checksum registrado; crear una nueva release (`v1.2.0`) con metadatos `CITATION.cff` actualizados; verificar la ingesta en Zenodo y recuperar el nuevo DOI de versión; actualizar `CITATION.cff` y el README conforme al DOI efectivamente asignado.
 
 El código de experimentación `v1.0.0` y las releases `v1.1.x` ya archivadas permanecen inalterados.
+
+
+### Estado de preservación v1.2.0 (18-11-2026)
+
+- **Release GitHub confirmada:** [v1.2.0 — Tesis V27 revisada](https://github.com/carloskoo1/radioenlace-inteligente-metodologia/releases/tag/v1.2.0), con archivo público [Word V27](https://github.com/carloskoo1/radioenlace-inteligente-metodologia/blob/v1.2.0/docs/tesis/TESIS_UBELSER_V27_PUBLICA_OPTIMIZADA_20261118.docx).
+- **Verificación automática:** [GitHub Actions 44455235286](https://github.com/carloskoo1/radioenlace-inteligente-metodologia/actions/runs/44455235286) — archivo íntegro y `CITATION.cff` válidos; release creada correctamente.
+- **Zenodo:** el sondeo automatizado no encontró un DOI nuevo para `v1.2.0` durante la ejecución. **No atribuir el DOI de `v1.1.1` a esta versión.** Verificar en [Zenodo → GitHub](https://zenodo.org/account/settings/github/) el estado de ingesta, errores y DOI antes de citar `v1.2.0` como depositada.
