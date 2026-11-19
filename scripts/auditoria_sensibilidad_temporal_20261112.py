@@ -64,7 +64,7 @@ def clf_model():
         SimpleImputer(strategy="median"),
         HistGradientBoostingClassifier(
             max_iter=140, learning_rate=.07, max_leaf_nodes=31,
-            l2_regularization=.2, random_state=SEED, class_weight="balanced"))
+            l2_regularization=.2, early_stopping=False, random_state=SEED, class_weight="balanced"))
 
 def cls_metrics(y_true, y_hat, proba, classes):
     actual = np.asarray(y_true)

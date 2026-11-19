@@ -1,0 +1,428 @@
+{
+  "commit_scientific": "v1.0.0",
+  "date_range": [
+    "2026-01-26 00:00:00-05:00",
+    "2026-05-31 00:24:00-05:00"
+  ],
+  "cut_train_validation": "2026-05-06 03:01:00-05:00",
+  "cut_validation_test": "2026-05-18 12:42:00-05:00",
+  "classification_horizon_minutes": 15,
+  "eligible_train_before_purge": 82373,
+  "eligible_train_removed_by_purge": 15,
+  "eligible_train_after_purge": 82358,
+  "cross_boundary_counts_by_horizon": {
+    "5": {
+      "train": 5,
+      "validation": 5,
+      "test": 0
+    },
+    "15": {
+      "train": 15,
+      "validation": 15,
+      "test": 0
+    },
+    "30": {
+      "train": 30,
+      "validation": 30,
+      "test": 0
+    }
+  },
+  "test_elapsed_gap_over_1min": 104,
+  "test_elapsed_gap_max_minutes": 107.0,
+  "classification_metrics": [
+    {
+      "model": "Persistencia",
+      "n": 17754,
+      "f1_macro": 0.546670239822332,
+      "tp": 549,
+      "fp": 988,
+      "fn": 999,
+      "tn": 15218,
+      "recall": 0.3546511627906977,
+      "false_alert_rate": 0.0609650746637048
+    },
+    {
+      "model": "HGB_original",
+      "n": 17754,
+      "f1_macro": 0.5657693237637004,
+      "tp": 589,
+      "fp": 1217,
+      "fn": 959,
+      "tn": 14989,
+      "recall": 0.3804909560723514,
+      "false_alert_rate": 0.07509564358879427
+    },
+    {
+      "model": "HGB_purga_frontera",
+      "n": 17754,
+      "f1_macro": 0.5719957712171353,
+      "tp": 685,
+      "fp": 1573,
+      "fn": 863,
+      "tn": 14633,
+      "recall": 0.44250645994832044,
+      "false_alert_rate": 0.09706281624089844
+    }
+  ],
+  "sensitivity_ci": [
+    {
+      "task": "F1_macro",
+      "horizon": 15,
+      "model": "HGB_original",
+      "block_observations": 30,
+      "ci_low": -0.008005424485793349,
+      "ci_high": 0.039289285610891234,
+      "supported_95": false,
+      "replications": 500
+    },
+    {
+      "task": "F1_macro",
+      "horizon": 15,
+      "model": "HGB_purga_frontera",
+      "block_observations": 30,
+      "ci_low": -0.004632431238745549,
+      "ci_high": 0.04586060587646648,
+      "supported_95": false,
+      "replications": 500
+    },
+    {
+      "task": "F1_macro",
+      "horizon": 15,
+      "model": "HGB_original",
+      "block_observations": 60,
+      "ci_low": -0.027494283923415866,
+      "ci_high": 0.045219126209786784,
+      "supported_95": false,
+      "replications": 500
+    },
+    {
+      "task": "F1_macro",
+      "horizon": 15,
+      "model": "HGB_purga_frontera",
+      "block_observations": 60,
+      "ci_low": -0.016872585782972817,
+      "ci_high": 0.045063048078357926,
+      "supported_95": false,
+      "replications": 500
+    },
+    {
+      "task": "F1_macro",
+      "horizon": 15,
+      "model": "HGB_original",
+      "block_observations": 120,
+      "ci_low": -0.03245518256772458,
+      "ci_high": 0.04241242324764187,
+      "supported_95": false,
+      "replications": 500
+    },
+    {
+      "task": "F1_macro",
+      "horizon": 15,
+      "model": "HGB_purga_frontera",
+      "block_observations": 120,
+      "ci_low": -0.036577804511753964,
+      "ci_high": 0.04483901514779301,
+      "supported_95": false,
+      "replications": 500
+    },
+    {
+      "task": "MAE",
+      "target": "mcs_dl",
+      "horizon": 5,
+      "model": "Ridge",
+      "block_observations": 30,
+      "ci_low": 0.34570782786560783,
+      "ci_high": 0.48251738652608095,
+      "supported_95": true,
+      "replications": 500
+    },
+    {
+      "task": "MAE",
+      "target": "mcs_dl",
+      "horizon": 5,
+      "model": "Ridge",
+      "block_observations": 60,
+      "ci_low": 0.34171763630524504,
+      "ci_high": 0.4833285114217137,
+      "supported_95": true,
+      "replications": 500
+    },
+    {
+      "task": "MAE",
+      "target": "mcs_dl",
+      "horizon": 5,
+      "model": "Ridge",
+      "block_observations": 120,
+      "ci_low": 0.3421626401844324,
+      "ci_high": 0.4768700183372739,
+      "supported_95": true,
+      "replications": 500
+    },
+    {
+      "task": "MAE",
+      "target": "mcs_dl",
+      "horizon": 15,
+      "model": "Ridge",
+      "block_observations": 30,
+      "ci_low": 0.34873227655273425,
+      "ci_high": 0.4878912445536212,
+      "supported_95": true,
+      "replications": 500
+    },
+    {
+      "task": "MAE",
+      "target": "mcs_dl",
+      "horizon": 15,
+      "model": "Ridge",
+      "block_observations": 60,
+      "ci_low": 0.3391169160724427,
+      "ci_high": 0.48727597495493696,
+      "supported_95": true,
+      "replications": 500
+    },
+    {
+      "task": "MAE",
+      "target": "mcs_dl",
+      "horizon": 15,
+      "model": "Ridge",
+      "block_observations": 120,
+      "ci_low": 0.3540085224014583,
+      "ci_high": 0.47574913825545706,
+      "supported_95": true,
+      "replications": 500
+    },
+    {
+      "task": "MAE",
+      "target": "mcs_dl",
+      "horizon": 30,
+      "model": "Ridge",
+      "block_observations": 30,
+      "ci_low": 0.3490696954447428,
+      "ci_high": 0.49497123770325047,
+      "supported_95": true,
+      "replications": 500
+    },
+    {
+      "task": "MAE",
+      "target": "mcs_dl",
+      "horizon": 30,
+      "model": "Ridge",
+      "block_observations": 60,
+      "ci_low": 0.3535901051045982,
+      "ci_high": 0.4929805530555295,
+      "supported_95": true,
+      "replications": 500
+    },
+    {
+      "task": "MAE",
+      "target": "mcs_dl",
+      "horizon": 30,
+      "model": "Ridge",
+      "block_observations": 120,
+      "ci_low": 0.35300647859320006,
+      "ci_high": 0.4865619725846444,
+      "supported_95": true,
+      "replications": 500
+    },
+    {
+      "task": "MAE",
+      "target": "rate_dl_mbps",
+      "horizon": 5,
+      "model": "Ridge",
+      "block_observations": 30,
+      "ci_low": 4.057511353259066,
+      "ci_high": 4.910928581006778,
+      "supported_95": true,
+      "replications": 500
+    },
+    {
+      "task": "MAE",
+      "target": "rate_dl_mbps",
+      "horizon": 5,
+      "model": "Ridge",
+      "block_observations": 60,
+      "ci_low": 3.8580836732763477,
+      "ci_high": 5.00316292094238,
+      "supported_95": true,
+      "replications": 500
+    },
+    {
+      "task": "MAE",
+      "target": "rate_dl_mbps",
+      "horizon": 5,
+      "model": "Ridge",
+      "block_observations": 120,
+      "ci_low": 3.802207006164263,
+      "ci_high": 5.0478719834627235,
+      "supported_95": true,
+      "replications": 500
+    },
+    {
+      "task": "MAE",
+      "target": "rate_dl_mbps",
+      "horizon": 15,
+      "model": "Ridge",
+      "block_observations": 30,
+      "ci_low": 3.0984613548097464,
+      "ci_high": 4.059527136759661,
+      "supported_95": true,
+      "replications": 500
+    },
+    {
+      "task": "MAE",
+      "target": "rate_dl_mbps",
+      "horizon": 15,
+      "model": "Ridge",
+      "block_observations": 60,
+      "ci_low": 3.027915116010953,
+      "ci_high": 4.167883785192591,
+      "supported_95": true,
+      "replications": 500
+    },
+    {
+      "task": "MAE",
+      "target": "rate_dl_mbps",
+      "horizon": 15,
+      "model": "Ridge",
+      "block_observations": 120,
+      "ci_low": 2.789152573833179,
+      "ci_high": 4.247487252211883,
+      "supported_95": true,
+      "replications": 500
+    },
+    {
+      "task": "MAE",
+      "target": "rate_dl_mbps",
+      "horizon": 30,
+      "model": "Ridge",
+      "block_observations": 30,
+      "ci_low": 2.951854495140679,
+      "ci_high": 4.004403741291972,
+      "supported_95": true,
+      "replications": 500
+    },
+    {
+      "task": "MAE",
+      "target": "rate_dl_mbps",
+      "horizon": 30,
+      "model": "Ridge",
+      "block_observations": 60,
+      "ci_low": 2.816625298679376,
+      "ci_high": 4.051072604992247,
+      "supported_95": true,
+      "replications": 500
+    },
+    {
+      "task": "MAE",
+      "target": "rate_dl_mbps",
+      "horizon": 30,
+      "model": "Ridge",
+      "block_observations": 120,
+      "ci_low": 2.552977967706837,
+      "ci_high": 4.260160467018733,
+      "supported_95": true,
+      "replications": 500
+    },
+    {
+      "task": "MAE",
+      "target": "rssi_dl_dbm",
+      "horizon": 5,
+      "model": "Ridge",
+      "block_observations": 30,
+      "ci_low": -0.08427511419961446,
+      "ci_high": -0.06861453446362228,
+      "supported_95": false,
+      "replications": 500
+    },
+    {
+      "task": "MAE",
+      "target": "rssi_dl_dbm",
+      "horizon": 5,
+      "model": "Ridge",
+      "block_observations": 60,
+      "ci_low": -0.08529963783387498,
+      "ci_high": -0.0679153064910776,
+      "supported_95": false,
+      "replications": 500
+    },
+    {
+      "task": "MAE",
+      "target": "rssi_dl_dbm",
+      "horizon": 5,
+      "model": "Ridge",
+      "block_observations": 120,
+      "ci_low": -0.08742855030030608,
+      "ci_high": -0.06634524051515173,
+      "supported_95": false,
+      "replications": 500
+    },
+    {
+      "task": "MAE",
+      "target": "rssi_dl_dbm",
+      "horizon": 15,
+      "model": "Ridge",
+      "block_observations": 30,
+      "ci_low": -0.04633956614075048,
+      "ci_high": -0.00988438570876088,
+      "supported_95": false,
+      "replications": 500
+    },
+    {
+      "task": "MAE",
+      "target": "rssi_dl_dbm",
+      "horizon": 15,
+      "model": "Ridge",
+      "block_observations": 60,
+      "ci_low": -0.04806603063082097,
+      "ci_high": -0.006853793118852911,
+      "supported_95": false,
+      "replications": 500
+    },
+    {
+      "task": "MAE",
+      "target": "rssi_dl_dbm",
+      "horizon": 15,
+      "model": "Ridge",
+      "block_observations": 120,
+      "ci_low": -0.05552343992520767,
+      "ci_high": 0.0012710072994979455,
+      "supported_95": false,
+      "replications": 500
+    },
+    {
+      "task": "MAE",
+      "target": "rssi_dl_dbm",
+      "horizon": 30,
+      "model": "Ridge",
+      "block_observations": 30,
+      "ci_low": -0.03306945881340984,
+      "ci_high": 0.01848880837858349,
+      "supported_95": false,
+      "replications": 500
+    },
+    {
+      "task": "MAE",
+      "target": "rssi_dl_dbm",
+      "horizon": 30,
+      "model": "Ridge",
+      "block_observations": 60,
+      "ci_low": -0.037595420857010474,
+      "ci_high": 0.018153688934278128,
+      "supported_95": false,
+      "replications": 500
+    },
+    {
+      "task": "MAE",
+      "target": "rssi_dl_dbm",
+      "horizon": 30,
+      "model": "Ridge",
+      "block_observations": 120,
+      "ci_low": -0.045866081980708455,
+      "ci_high": 0.024532352600700594,
+      "supported_95": false,
+      "replications": 500
+    }
+  ],
+  "bootstrap_blocks_are_observation_counts": true,
+  "note": "Sensibilidad de remuestreo sobre la misma secuencia de test. No es validacion de campo."
+}
