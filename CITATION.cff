@@ -21,9 +21,10 @@ abstract: >-
   altoandino Cuñacales–San José. Incluye clasificación de estados operacionales
   proxy, detección de anomalías y pronósticos de RSSI, MCS y tasa DL a 5, 15 y
   30 minutos, con evaluación temporal y auditoría independiente en Linux/Python
-  3.12. La versión 1.1.1 incorpora un dashboard de demostración posterior al
-  estudio, guías de instalación y reproducibilidad, la tesis en versión de
-  cierre documental pendiente de aprobación académica y el dictamen de cierre.
+  3.12. La versión 1.2.0 incorpora la tesis V27 revisada y su auditoría adversarial
+  de trazabilidad metodológica. La versión 1.1.1 permanece como depósito
+  histórico, con dashboard de demostración, guías de instalación, tesis de
+  cierre documental y dictamen. El DOI específico de 1.2.0 está sin confirmar.
   La telemetría reciente procedente de respaldos se presenta como visualización,
   sin atribuirle predicción validada en tiempo real. Se conservan las limitaciones
   y las discrepancias de Windows documentadas. El código se distribuye bajo
