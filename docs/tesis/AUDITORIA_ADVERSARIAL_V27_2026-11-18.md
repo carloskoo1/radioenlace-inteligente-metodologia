@@ -50,6 +50,16 @@ Los números entre corchetes son las referencias IEEE del propio Word; no son nu
 
 **Aidé Yanet Huamán Rivera**, **Jaime Ayay Valdez** y **Víctor Sánchez Cáceres** revisaron el contenido de cinco instrumentos (A2–A6), con puntuaciones de 3 y 4 en claridad, pertinencia, coherencia y suficiencia. El resultado descriptivo global es **V de Aiken = 0,844**; la suficiencia presenta **V = 0,667**. Los expertos emitieron observaciones subsanables, no certificaciones de calibración metrológica ni de exactitud operativa de modelos. La versión enviada por correo a los tres fue **V25**; los originales recibidos deben conservarse sin reescribir sus leyendas o firmas.
 
+## Paquete público preparado (no depositado todavía)
+
+Se preparó un ejemplar de publicación de **103 páginas**, con resultados, tablas, datos bibliográficos y valoraciones de expertos, **sin las seis imágenes de formularios firmados**; los originales íntegros permanecen en el expediente privado.
+
+- Nombre: `TESIS_UBELSER_V27_COPIA_PUBLICA_SIN_FIRMAS_20261118.docx`.
+- SHA-256: `d466d42d1ce4e14bdeb059d8db9925fd5c2e8622a095b8b2a64d06b7bad04733`.
+- Ruta prevista en GitHub: `docs/tesis/TESIS_UBELSER_V27_COPIA_PUBLICA_SIN_FIRMAS_20261118.docx`.
+
+**No declarar que el archivo está publicado hasta encontrarlo en el árbol GitHub con el SHA indicado.** La copia completa, con las fichas firmadas, se conserva en Google Drive bajo acceso de propietario y no se destina a publicación abierta.
+
 ## Alcance archivístico y preservación
 
 El DOI **[10.5281/zenodo.23748244](https://doi.org/10.5281/zenodo.23748244)** identifica la release archivada `v1.1.1` de octubre de 2026. **No identifica la V27 de noviembre de 2026**.
