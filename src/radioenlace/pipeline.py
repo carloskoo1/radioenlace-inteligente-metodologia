@@ -104,7 +104,7 @@ for target in targets:
     models={
       'Persistencia':None,
       'Ridge':make_pipeline(SimpleImputer(strategy='median'),StandardScaler(),Ridge(alpha=1.0)),
-      'HistGradientBoosting':make_pipeline(SimpleImputer(strategy='median'),HistGradientBoostingRegressor(max_iter=120,learning_rate=.07,max_leaf_nodes=31,l2_regularization=.2,random_state=SEED)),
+      'HistGradientBoosting':make_pipeline(SimpleImputer(strategy='median'),HistGradientBoostingRegressor(max_iter=120,learning_rate=.07,max_leaf_nodes=31,l2_regularization=.2,early_stopping=False,random_state=SEED)),
     }
     for name,model in models.items():
         if model is None:
@@ -150,7 +150,7 @@ ds=ds[ds['target'].notna()]
 tr=ds.index<cut1; te=ds.index>=cut2
 Xtr=ds.loc[tr,feature_cols]; ytr=ds.loc[tr,'target']
 Xte=ds.loc[te,feature_cols]; yte=ds.loc[te,'target']
-clf=make_pipeline(SimpleImputer(strategy='median'),HistGradientBoostingClassifier(max_iter=140,learning_rate=.07,max_leaf_nodes=31,l2_regularization=.2,random_state=SEED,class_weight='balanced'))
+clf=make_pipeline(SimpleImputer(strategy='median'),HistGradientBoostingClassifier(max_iter=140,learning_rate=.07,max_leaf_nodes=31,l2_regularization=.2,early_stopping=False,random_state=SEED,class_weight='balanced'))
 clf.fit(Xtr,ytr)
 pred_cls=clf.predict(Xte)
 proba=clf.predict_proba(Xte); classes=clf.named_steps['histgradientboostingclassifier'].classes_
