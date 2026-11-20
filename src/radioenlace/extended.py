@@ -9,7 +9,7 @@ from sklearn.metrics import f1_score
 
 ROOT=Path(__file__).resolve().parents[2]; OUT=ROOT/'results'/'tables'
 CFG=yaml.safe_load((ROOT/'config'/'analysis.yml').read_text(encoding='utf-8'))
-SEED=int(CFG['random_seed']); N_BOOT=int(CFG['bootstrap']['resamples']); BLOCK=int(CFG['bootstrap']['moving_block_minutes'])
+SEED=int(CFG['random_seed']); N_BOOT=int(CFG['bootstrap']['resamples']); BLOCK=int(CFG['bootstrap']['moving_block_minutes'])  # unidad: observaciones elegibles consecutivas, no minutos de calendario (A22)
 rng=np.random.default_rng(SEED)
 
 # Paired moving-block bootstrap for forecast MAE and RMSE differences.

@@ -1,4 +1,4 @@
-"""Auditoría no destructiva de cortes y sensibilidad inferencial para la tesis Ubelser.
+﻿"""Auditoría no destructiva de cortes y sensibilidad inferencial para la tesis Ubelser.
 
 Ejecutar después de scripts/run_all.py, en Linux/Python 3.12.
 Los resultados se escriben EXCLUSIVAMENTE en audit/sensibilidad_20261112.
@@ -22,7 +22,7 @@ OUT = ROOT / "audit" / "sensibilidad_20261112"
 OUT.mkdir(parents=True, exist_ok=True)
 CFG = yaml.safe_load((ROOT / "config" / "analysis.yml").read_text(encoding="utf-8"))
 SEED = int(CFG["random_seed"])
-B = 500  # Sensibilidad exploratoria: 500 remuestreos por escenario.
+B = 1000  # V28: 1 000 remuestreos por escenario, igual que el bootstrap principal (config bootstrap.resamples).
 H = 15
 LAGS = [1, 5, 15, 30, 60]
 WINS = [5, 15, 60]
@@ -235,3 +235,4 @@ pd.DataFrame(forecast_results).to_csv(OUT / "sensibilidad_ridge.csv", index=Fals
 print("AUDITORIA_SENSIBILIDAD_BEGIN")
 print(json.dumps(results, indent=2, ensure_ascii=False))
 print("AUDITORIA_SENSIBILIDAD_END")
+

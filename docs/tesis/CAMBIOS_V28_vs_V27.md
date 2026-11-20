@@ -315,3 +315,46 @@ Registro de reemplazos aplicados por `make_v28.py` (el docx no usa control de ca
 - 4.3.2: diferencia de F1-macro frente a persistencia 0,028 -> 0,019 e IC 95 % [-0,017; 0,046] -> [-0,023; 0,045], segun results/tables/classification_bootstrap_comparison.csv. Hallazgo del experto V. Sanchez; era un residuo de V27 que el barrido anterior no detecto. Las tablas del Anexo A8.1 (V27) se conservan como historicas.
 - Anexo 9: se agrega el parrafo de ratificacion de los tres especialistas sobre la V28 (19-nov-2026). El cotejo de puntuaciones individuales con las fichas firmadas de V25 queda registrado como pendiente del asesor.
 - MANIFEST_SHA256.txt regenerado.
+
+
+## Parche V28b (20-nov-2026): hallazgos A8, A9, A10, A12, A13, A14, A21, A22, A23, A24
+- A10/A9: cifras de purga V27 (0,5773/0,5748) sustituidas por las de la V28 y cruces por frontera por horizonte
+- A9: efecto de la purga cuantificado; ya no se atribuye a ruido de semilla
+- A13: se reportan las métricas de validación del clasificador
+- A13: validación citada en la decisión de HE3
+- A13: importancia con 30 repeticiones
+- A13: importancia con 30 repeticiones en resultados
+- A13: orden de importancia no estable
+- A14/A13: lectura asociativa de la importancia, con la circularidad del SNR DL y el orden inestable
+- A14: verbo no causal
+- A21: anomalías reportadas por tramo, separando el entrenamiento
+- A21: aclaración en la discusión
+- A23: efecto del relleno con «normal» medido
+- A12: matriz alineada con Cap. I (HG)
+- A12: matriz alineada con Cap. I (OE1/HE1)
+- A12: matriz alineada con Cap. I (OE2/HE2)
+- A12: matriz alineada con Cap. I (OE3/HE3)
+- A12: matriz alineada con Cap. I (OE4/HE4)
+- A8: réplicas conciliadas
+- A8: título de la Tabla A8.4
+- A8: Tabla A8.4 recalculada con 1 000 réplicas
+- A8: diferencias puntuales
+- A8: conclusión de la Tabla A8.4 con 1 000 réplicas; la «mejora estable» se limita a MCS DL a 15 minutos
+- A9/A10/A13/A21/A23: apartado 8.9 con Tablas A8.8 a A8.12
+
+
+## Parche V28c (20-nov-2026): equivalencia entre plataformas
+- A3/Linux: equivalencia entre plataformas verificada; HGB no coincide
+- Linux: aclaración en reproducibilidad
+- Linux: conclusión OE2
+- Linux: apartado 8.7
+- Resumen: equivalencia entre plataformas
+- Abstract: cross-platform equivalence
+- Linux: apartado 8.10 y Tabla A8.13 (equivalencia entre plataformas)
+
+
+## Parche V28d (20-nov-2026)
+- A15: página de [35] verificada (sección 2.4 «Análisis de documentos», p. 30, del libro de Medina Romero et al.)
+
+- Linux: la reejecucion en Linux (Python 3.13) reprodujo base maestra, persistencia y Ridge, y NO reprodujo HistGradientBoosting; se documenta en el Anexo 8.10 y en results/tables/v28b_plataformas_hgb.csv. verify_outputs.py acepta el rango de ambas plataformas para HGB.
+- A22: comentario en config/analysis.yml y extended.py sobre la unidad del bloque; A8: scripts/auditoria_sensibilidad_temporal_20261112.py con B=1000 y resultados.json regenerado.
