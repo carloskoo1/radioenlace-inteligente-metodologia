@@ -1,4 +1,4 @@
-# Cambios V28 frente a V27
+﻿# Cambios V28 frente a V27
 
 Registro de reemplazos aplicados por `make_v28.py` (el docx no usa control de cambios de Word; este registro es la trazabilidad).
 
@@ -310,3 +310,6 @@ Registro de reemplazos aplicados por `make_v28.py` (el docx no usa control de ca
 - V27: figura_4_4, 4_7, 4_5 y 4_8 de la V27
 - V28: figuras regeneradas con la corrida V28
 
+
+## Correccion posterior a la revalidacion (19-nov-2026)
+- 4.3.2: diferencia de F1-macro frente a persistencia 0,028 -> 0,019 e IC 95 % [-0,017; 0,046] -> [-0,023; 0,045], segun results/tables/classification_bootstrap_comparison.csv. Hallazgo del experto V. Sanchez; era un residuo de V27 que el barrido anterior no detecto. Las tablas del Anexo A8.1 (V27) se conservan como historicas.
