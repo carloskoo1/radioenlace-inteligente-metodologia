@@ -313,3 +313,5 @@ Registro de reemplazos aplicados por `make_v28.py` (el docx no usa control de ca
 
 ## Correccion posterior a la revalidacion (19-nov-2026)
 - 4.3.2: diferencia de F1-macro frente a persistencia 0,028 -> 0,019 e IC 95 % [-0,017; 0,046] -> [-0,023; 0,045], segun results/tables/classification_bootstrap_comparison.csv. Hallazgo del experto V. Sanchez; era un residuo de V27 que el barrido anterior no detecto. Las tablas del Anexo A8.1 (V27) se conservan como historicas.
+- Anexo 9: se agrega el parrafo de ratificacion de los tres especialistas sobre la V28 (19-nov-2026). El cotejo de puntuaciones individuales con las fichas firmadas de V25 queda registrado como pendiente del asesor.
+- MANIFEST_SHA256.txt regenerado.
