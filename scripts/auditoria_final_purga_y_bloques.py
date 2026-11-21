@@ -73,7 +73,7 @@ ytest=ds.loc[test,"target"]
 def fit(x,y):
     estimator=make_pipeline(SimpleImputer(strategy="median"),HistGradientBoostingClassifier(
         max_iter=140, learning_rate=.07,max_leaf_nodes=31,l2_regularization=.2,
-        random_state=SEED,class_weight="balanced"))
+        early_stopping=False,random_state=SEED,class_weight="balanced"))
     estimator.fit(x,y)
     return estimator
 original=fit(xtrain,ytrain)

@@ -30,7 +30,7 @@ flowchart LR
 | OE1. Construir un conjunto temporal depurado | Flujo de integración AP y calidad | 90 archivos; 173 513 registros; 118 458 minutos observados | 65,80 % de cobertura, no serie ininterrumpida |
 | OE2. Diseñar e implementar los módulos | Código ejecutable y pruebas funcionales | scripts, configuración, módulos y registros de salida | Comprobación funcional no equivale a superioridad predictiva |
 | OE3. Comparar diagnóstico y pronóstico | Modelos, referencias, métricas y bootstrap | F1/AUC, MAE/RMSE, matriz de confusión, figuras | La mejora del F1-macro no fue concluyente |
-| OE4. Anticipar y explicar | Alertas a 15 min e importancia por permutación | 723 de 1 548 condiciones proxy anticipadas en el resultado publicado; SNR DL influyente | No existen etiquetas completas de incidencias de campo |
+| OE4. Anticipar y explicar | Alertas a 15 min e importancia por permutación | 589 de 1 548 condiciones proxy anticipadas en la V28 (sin ganancia concluyente sobre persistencia); SNR DL influyente | No existen etiquetas completas de incidencias de campo |
 
 ## ¿Qué puede mostrar el sustentante?
 

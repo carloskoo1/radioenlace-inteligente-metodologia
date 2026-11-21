@@ -1,0 +1,259 @@
+{
+  "method": "Sensibilidad retrospectiva, no estimacion prospectiva ni nuevo test independiente",
+  "environment": "Ubuntu GitHub Actions / Python 3.12",
+  "cut_train": "2026-05-06 08:01:00+00:00",
+  "cut_validation": "2026-05-18 17:42:00+00:00",
+  "classification_original": {
+    "n_test": 17754,
+    "f1_macro": 0.5657693237637004,
+    "auc_ovr_macro": 0.7883173427131416,
+    "tp": 589,
+    "fp": 1217,
+    "fn": 959,
+    "tn": 14989,
+    "alert_precision": 0.32613510520487266,
+    "alert_recall": 0.3804909560723514
+  },
+  "classification_purged": {
+    "n_test": 17754,
+    "f1_macro": 0.5719957712171353,
+    "auc_ovr_macro": 0.7933984508574551,
+    "tp": 685,
+    "fp": 1573,
+    "fn": 863,
+    "tn": 14633,
+    "alert_precision": 0.30336581045172717,
+    "alert_recall": 0.44250645994832044,
+    "n_train_original": 82373,
+    "n_train_purged": 82358,
+    "removed_cross_boundary_train": 15,
+    "n_predictions_changed": 866
+  },
+  "reference_check": {
+    "f1_reference": 0.5657693237637004,
+    "f1_rebuilt": 0.5657693237637004,
+    "f1_abs_delta": 0.0
+  },
+  "forecast": [
+    {
+      "target": "rssi_dl_dbm",
+      "n_test": 17632,
+      "mae_persistencia": 0.49861048094373867,
+      "mae_ridge_original": 0.5260522326419081,
+      "mae_ridge_purgado": 0.5260501687580714,
+      "delta_mae_purgado_menos_original": -2.063883836722624e-06
+    },
+    {
+      "target": "mcs_dl",
+      "n_test": 17632,
+      "mae_persistencia": 1.2700487749546279,
+      "mae_ridge_original": 0.8667687646680863,
+      "mae_ridge_purgado": 0.8667763029816482,
+      "delta_mae_purgado_menos_original": 7.538313561927801e-06
+    },
+    {
+      "target": "rate_dl_mbps",
+      "n_test": 17632,
+      "mae_persistencia": 22.54554219600726,
+      "mae_ridge_original": 18.96549042077032,
+      "mae_ridge_purgado": 18.965622799989944,
+      "delta_mae_purgado_menos_original": 0.0001323792196252782
+    }
+  ],
+  "boundary_counts": [
+    {
+      "target": "rssi_dl_dbm",
+      "horizon_minutes": 15,
+      "removed_train": 15,
+      "removed_validation": 15,
+      "n_test": 17632
+    },
+    {
+      "target": "mcs_dl",
+      "horizon_minutes": 15,
+      "removed_train": 15,
+      "removed_validation": 15,
+      "n_test": 17632
+    },
+    {
+      "target": "rate_dl_mbps",
+      "horizon_minutes": 15,
+      "removed_train": 15,
+      "removed_validation": 15,
+      "n_test": 17632
+    }
+  ],
+  "bootstrap_classification_original": [
+    {
+      "metric": "delta_f1_hgb_minus_persistencia",
+      "scenario": "observaciones",
+      "block": 15,
+      "n_boot": 1000,
+      "estimate": 0.01909908394136839,
+      "ci_low": -0.004503381452658474,
+      "ci_high": 0.04123152032840726,
+      "ci_excludes_zero": false
+    },
+    {
+      "metric": "delta_f1_hgb_minus_persistencia",
+      "scenario": "observaciones",
+      "block": 60,
+      "n_boot": 1000,
+      "estimate": 0.01909908394136839,
+      "ci_low": -0.024069720290752765,
+      "ci_high": 0.04146184641822246,
+      "ci_excludes_zero": false
+    },
+    {
+      "metric": "delta_f1_hgb_minus_persistencia",
+      "scenario": "observaciones",
+      "block": 180,
+      "n_boot": 1000,
+      "estimate": 0.01909908394136839,
+      "ci_low": -0.03232176091228359,
+      "ci_high": 0.04359233536731703,
+      "ci_excludes_zero": false
+    },
+    {
+      "metric": "delta_f1_hgb_minus_persistencia",
+      "scenario": "minutos_reales",
+      "block": 60,
+      "n_boot": 1000,
+      "estimate": 0.01909908394136839,
+      "ci_low": -0.02323106907169548,
+      "ci_high": 0.044222535140025276,
+      "ci_excludes_zero": false
+    }
+  ],
+  "bootstrap_classification_purged": [
+    {
+      "metric": "delta_f1_hgb_minus_persistencia",
+      "scenario": "observaciones",
+      "block": 15,
+      "n_boot": 1000,
+      "estimate": 0.025325531394803313,
+      "ci_low": 0.004656806414518,
+      "ci_high": 0.043953486877699295,
+      "ci_excludes_zero": true
+    },
+    {
+      "metric": "delta_f1_hgb_minus_persistencia",
+      "scenario": "observaciones",
+      "block": 60,
+      "n_boot": 1000,
+      "estimate": 0.025325531394803313,
+      "ci_low": -0.016584260925650116,
+      "ci_high": 0.04367768424917617,
+      "ci_excludes_zero": false
+    },
+    {
+      "metric": "delta_f1_hgb_minus_persistencia",
+      "scenario": "observaciones",
+      "block": 180,
+      "n_boot": 1000,
+      "estimate": 0.025325531394803313,
+      "ci_low": -0.03139519153824953,
+      "ci_high": 0.04376990142974073,
+      "ci_excludes_zero": false
+    },
+    {
+      "metric": "delta_f1_hgb_minus_persistencia",
+      "scenario": "minutos_reales",
+      "block": 60,
+      "n_boot": 1000,
+      "estimate": 0.025325531394803313,
+      "ci_low": -0.01925807272544059,
+      "ci_high": 0.04641762899769795,
+      "ci_excludes_zero": false
+    }
+  ],
+  "bootstrap_mcs15": [
+    {
+      "metric": "ganancia_mae_ridge_mcs15",
+      "scenario": "observaciones",
+      "block": 15,
+      "n_boot": 1000,
+      "estimate": 0.4032800102865416,
+      "ci_low": 0.33286213007752263,
+      "ci_high": 0.4713251384195291,
+      "ci_excludes_zero": true
+    },
+    {
+      "metric": "ganancia_mae_ridge_mcs15",
+      "scenario": "observaciones",
+      "block": 60,
+      "n_boot": 1000,
+      "estimate": 0.4032800102865416,
+      "ci_low": 0.33849492604207293,
+      "ci_high": 0.4763653923922522,
+      "ci_excludes_zero": true
+    },
+    {
+      "metric": "ganancia_mae_ridge_mcs15",
+      "scenario": "observaciones",
+      "block": 180,
+      "n_boot": 1000,
+      "estimate": 0.4032800102865416,
+      "ci_low": 0.3420666894334815,
+      "ci_high": 0.47195957565125846,
+      "ci_excludes_zero": true
+    },
+    {
+      "metric": "ganancia_mae_ridge_mcs15",
+      "scenario": "minutos_reales",
+      "block": 60,
+      "n_boot": 1000,
+      "estimate": 0.4032800102865416,
+      "ci_low": 0.3361908574260028,
+      "ci_high": 0.4750863658877958,
+      "ci_excludes_zero": true
+    },
+    {
+      "metric": "ganancia_mae_ridge_purgado_mcs15",
+      "scenario": "observaciones",
+      "block": 15,
+      "n_boot": 1000,
+      "estimate": 0.40327247197297966,
+      "ci_low": 0.3328445012553348,
+      "ci_high": 0.4713059117296891,
+      "ci_excludes_zero": true
+    },
+    {
+      "metric": "ganancia_mae_ridge_purgado_mcs15",
+      "scenario": "observaciones",
+      "block": 60,
+      "n_boot": 1000,
+      "estimate": 0.40327247197297966,
+      "ci_low": 0.33847569814768613,
+      "ci_high": 0.47636573927128373,
+      "ci_excludes_zero": true
+    },
+    {
+      "metric": "ganancia_mae_ridge_purgado_mcs15",
+      "scenario": "observaciones",
+      "block": 180,
+      "n_boot": 1000,
+      "estimate": 0.40327247197297966,
+      "ci_low": 0.3420585973056648,
+      "ci_high": 0.47196242816910716,
+      "ci_excludes_zero": true
+    },
+    {
+      "metric": "ganancia_mae_ridge_purgado_mcs15",
+      "scenario": "minutos_reales",
+      "block": 60,
+      "n_boot": 1000,
+      "estimate": 0.40327247197297966,
+      "ci_low": 0.33619010965262425,
+      "ci_high": 0.47508885185712674,
+      "ci_excludes_zero": true
+    }
+  ],
+  "limitations": [
+    "El test cronologico se reutiliza para analisis de sensibilidad; no es segunda cohorte.",
+    "La purga evita etiquetas futuras que cruzan entrenamiento/validacion, no altera las caracteristicas ni el etiquetado proxy.",
+    "Los bloques de observaciones no son bloques de tiempo real.",
+    "Los intervalos de bootstrap son exploratorios y dependen de la hipotesis de dependencia temporal.",
+    "La variabilidad entre plataformas de HistGradientBoosting persiste como limitacion."
+  ]
+}

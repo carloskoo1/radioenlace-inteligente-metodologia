@@ -6,3 +6,11 @@ __pycache__/
 data/raw/extracted/
 results/tables/master_minute.csv.gz
 results/tables/forecast_test_predictions.csv
+
+# Documentos de expertos (firmas, sellos, correos): solo locales, no versionar
+docs/instrumentos/Aidee.pdf
+docs/instrumentos/JAIME_AYAY_VALDEZ_COMPLETADA.pdf
+docs/instrumentos/FICHA_VALIDACION_UBELSER_VICTOR_SANCHEZ_CACERES.docx
+docs/instrumentos/Confirmacion*.docx
+docs/Confirmacion*.docx
+docs/instrumentos/Ratificacion*

@@ -32,5 +32,6 @@ anomaly_detection:
   estimators: 200
 bootstrap:
   resamples: 1000
+  # Unidad real: 60 observaciones elegibles consecutivas de la serie ya filtrada, no 60 minutos de calendario (hallazgo A22 de la auditoria).
   moving_block_minutes: 60
 random_seed: 42

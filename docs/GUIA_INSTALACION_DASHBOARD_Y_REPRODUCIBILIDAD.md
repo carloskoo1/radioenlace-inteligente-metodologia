@@ -217,7 +217,7 @@ Para ver un análisis **ya realizado** de la discrepancia, consulte [Auditoría 
 | Verdaderos positivos de alertas | 723 publicados frente a 644 recalculados; **no coincide** |
 | Falsos positivos de alertas | 1 742 publicados frente a 1 327 recalculados; **no coincide** |
 
-**La reproducibilidad numérica integral fue comprobada en el entorno Linux/Python 3.12 indicado en la auditoría independiente. La equivalencia numérica en Windows nativo no está demostrada.** La causa de las discrepancias del clasificador sigue bajo investigación. No atribuirla automáticamente a Python, a los hilos del procesador o al sistema operativo sin evidencia.
+**La reproducibilidad numérica integral fue comprobada en el entorno Linux/Python 3.12 indicado en la auditoría independiente. La equivalencia numérica en Windows nativo no está demostrada.** La causa de las discrepancias del clasificador no fue demostrada. **Actualización V28 (19-11-2026):** HistGradientBoosting usaba la parada temprana automática de scikit-learn (submuestra aleatoria de validación); se desactivó (`early_stopping=False`) y las cifras se regeneraron (F1-macro 0,566; AUC 0,788; alertas 589 VP / 1 217 FP). La equivalencia entre plataformas del modelo corregido no está verificada. No atribuirla automáticamente a Python, a los hilos del procesador o al sistema operativo sin evidencia.
 
 El repositorio principal contiene además [scripts/auditar_reproduccion.py](../scripts/auditar_reproduccion.py) (agregado después de `v1.0.0`) para comparar resultados recalculados con la referencia publicada. No se encuentra dentro de la etiqueta científica antigua. Si se utiliza, debe ejecutarse en una copia de auditoría que incluya ese script y conservar explícitamente qué versión de código y datos se evaluó.
 

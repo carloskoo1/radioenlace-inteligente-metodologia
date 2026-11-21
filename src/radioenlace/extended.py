@@ -9,7 +9,7 @@ from sklearn.metrics import f1_score
 
 ROOT=Path(__file__).resolve().parents[2]; OUT=ROOT/'results'/'tables'
 CFG=yaml.safe_load((ROOT/'config'/'analysis.yml').read_text(encoding='utf-8'))
-SEED=int(CFG['random_seed']); N_BOOT=int(CFG['bootstrap']['resamples']); BLOCK=int(CFG['bootstrap']['moving_block_minutes'])
+SEED=int(CFG['random_seed']); N_BOOT=int(CFG['bootstrap']['resamples']); BLOCK=int(CFG['bootstrap']['moving_block_minutes'])  # unidad: observaciones elegibles consecutivas, no minutos de calendario (A22)
 rng=np.random.default_rng(SEED)
 
 # Paired moving-block bootstrap for forecast MAE and RMSE differences.
@@ -59,7 +59,7 @@ valid_times=m.index[m.observed.eq(1)]; cut1=valid_times[int(len(valid_times)*flo
 y=m.state_proxy.shift(-15); ds=f.copy(); ds['target']=y; ds=ds[ds.target.notna()]
 tr=ds.index<cut1; te=ds.index>=cut2
 Xtr=ds.loc[tr,feature_cols]; ytr=ds.loc[tr,'target']; Xte=ds.loc[te,feature_cols]; yte=ds.loc[te,'target']
-clf=make_pipeline(SimpleImputer(strategy='median'),HistGradientBoostingClassifier(max_iter=140,learning_rate=.07,max_leaf_nodes=31,l2_regularization=.2,random_state=SEED,class_weight='balanced'))
+clf=make_pipeline(SimpleImputer(strategy='median'),HistGradientBoostingClassifier(max_iter=140,learning_rate=.07,max_leaf_nodes=31,l2_regularization=.2,early_stopping=False,random_state=SEED,class_weight='balanced'))
 clf.fit(Xtr,ytr); pred_hgb=clf.predict(Xte); pred_per=m.state_proxy.reindex(Xte.index).fillna('normal').to_numpy()
 
 # Moving-block bootstrap difference in macro F1.

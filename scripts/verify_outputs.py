@@ -13,8 +13,12 @@ assert s["anomaly_flags"] == 1_093
 
 c = pd.read_csv(OUT / "classification_metrics.csv")
 hgb = c.loc[c.model.eq("HistGradientBoosting")].iloc[0]
-assert abs(hgb.f1_macro - 0.575) < 0.002
-assert abs(hgb.auc_ovr_macro - 0.794) < 0.002
+# HistGradientBoosting es reproducible dentro de una plataforma pero no entre plataformas
+# (Windows: 0.5658 / 0.7883; Linux: 0.5666 / 0.7986; Anexo 8.10). Se acepta ese rango.
+assert abs(hgb.f1_macro - 0.5662) < 0.003
+assert abs(hgb.auc_ovr_macro - 0.7935) < 0.008
+per = c.loc[c.model.eq("Persistencia")].iloc[0]
+assert abs(per.f1_macro - 0.5467) < 0.0005  # persistencia: idéntica en todas las plataformas
 
 a = pd.read_csv(OUT / "anticipation_metrics.csv")
 assert set(a.model) == {"Persistencia", "HistGradientBoosting"}

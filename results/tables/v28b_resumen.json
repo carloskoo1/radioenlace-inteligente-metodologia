@@ -1,0 +1,43 @@
+{
+  "f1_macro_reconstruido": 0.5657693237637004,
+  "f1_macro_referencia": 0.5657693237637004,
+  "determinismo_clasificador_por_semilla": [
+    {
+      "semilla": 0,
+      "predicciones_distintas_vs_base": 0
+    },
+    {
+      "semilla": 1,
+      "predicciones_distintas_vs_base": 0
+    },
+    {
+      "semilla": 7,
+      "predicciones_distintas_vs_base": 0
+    },
+    {
+      "semilla": 123,
+      "predicciones_distintas_vs_base": 0
+    }
+  ],
+  "determinismo_regresor_mcs_h5_max_abs_dif": 1.4210854715202004e-14,
+  "determinismo_regresor_mcs_h5_mae": 1.0205201682999936,
+  "importancia": {
+    "spearman_rangos_3_vs_30": 0.8945744011146599,
+    "solape_top10": 8,
+    "top5_30rep": [
+      "snr_dl_db",
+      "mcs_ul_mean60",
+      "rssi_dl_dbm",
+      "rate_dl_mbps_std60",
+      "rate_dl_mbps_lag5"
+    ],
+    "top5_3rep": [
+      "snr_dl_db",
+      "mcs_ul_mean60",
+      "rate_dl_mbps_std60",
+      "rssi_dl_dbm",
+      "rate_dl_mbps_lag5"
+    ]
+  },
+  "prueba_minutos_sin_estado_actual": 122
+}

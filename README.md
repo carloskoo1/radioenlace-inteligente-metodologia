@@ -83,8 +83,8 @@ pytest -q
 
 ## Resultados de referencia
 
-- F1-macro de HistGradientBoosting: aproximadamente 0,575.
-- AUC OVR macro: aproximadamente 0,794.
+- F1-macro de HistGradientBoosting: aproximadamente 0,566 (V28, sin parada temprana; la V27 informaba 0,575 con parada temprana automática).
+- AUC OVR macro: aproximadamente 0,788 (V27: 0,794).
 - Anomalías identificadas: 1093 observaciones completas.
 - Las mejoras predictivas fueron claras para MCS y tasa DL, pero no uniformes para RSSI.
 
