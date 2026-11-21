@@ -372,3 +372,8 @@ Registro de reemplazos aplicados por `make_v28.py` (el docx no usa control de ca
 - La V de Aiken de la Tabla A9.1 se recalculo (n=3, c=3) sin diferencias.
 - Se reemplaza la frase 'pendiente de registro por el asesor' por la constancia del cotejo. El cotejo es documental; no verifica autenticidad de firmas ni sellos.
 - No se alteraron tablas, puntuaciones ni resultados.
+
+
+## V28g (21-nov-2026) - Constancia actualizada
+- La constancia del asesor (Anexo 9) indica que A. Huaman R. y J. Ayay V. no respondieron pese a la reiteracion; no se espera su confirmacion. Solo V. Sanchez C. confirmo (WhatsApp, 20/11).
+- Se agregan al .gitignore los documentos de expertos (fichas, confirmacion) que se conservan solo en local.
