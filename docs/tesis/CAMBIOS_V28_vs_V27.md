@@ -358,3 +358,10 @@ Registro de reemplazos aplicados por `make_v28.py` (el docx no usa control de ca
 
 - Linux: la reejecucion en Linux (Python 3.13) reprodujo base maestra, persistencia y Ridge, y NO reprodujo HistGradientBoosting; se documenta en el Anexo 8.10 y en results/tables/v28b_plataformas_hgb.csv. verify_outputs.py acepta el rango de ambas plataformas para HGB.
 - A22: comentario en config/analysis.yml y extended.py sobre la unidad del bloque; A8: scripts/auditoria_sensibilidad_temporal_20261112.py con B=1000 y resultados.json regenerado.
+
+
+## V28e (21-nov-2026) - Constancia del asesor en el Anexo 9
+- Se agrega un parrafo 'Constancia del asesor sobre cambios posteriores a las cartas' al inicio del Anexo 9, tras el parrafo de cotejo de fichas.
+- Registra: ajustes posteriores a las cartas del 19/11 (no tocan instrumentos, criterios ni calificaciones); confirmacion de V. Sanchez C. por WhatsApp (20/11, 14:52); sin respuesta de A. Huaman R. ni J. Ayay V.
+- La ratificacion de los expertos sigue referida a la version que revisaron; la constancia es declaracion del asesor, no de los expertos ni aprobacion institucional.
+- No se alteraron resultados, tablas ni calificaciones.
