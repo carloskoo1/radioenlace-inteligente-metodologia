@@ -1,4 +1,4 @@
-cff-version: 1.2.0
+cff-version: 1.3.0
 message: "Si utiliza este repositorio, cite este artefacto reproducible y la tesis asociada."
 title: "Metodología reproducible para el diagnóstico y pronóstico del radioenlace Cuñacales–San José"
 type: software
@@ -11,8 +11,8 @@ authors:
     given-names: Carlos Jesús
     affiliation: Universidad Nacional de Cajamarca
     orcid: "https://orcid.org/0000-0002-0323-2961"
-version: 1.2.0
-date-released: 2026-11-18
+version: 1.3.0
+date-released: 2026-11-21
 repository-code: "https://github.com/carloskoo1/radioenlace-inteligente-metodologia"
 license: MIT
 abstract: >-
@@ -21,10 +21,14 @@ abstract: >-
   altoandino Cuñacales–San José. Incluye clasificación de estados operacionales
   proxy, detección de anomalías y pronósticos de RSSI, MCS y tasa DL a 5, 15 y
   30 minutos, con evaluación temporal y auditoría independiente en Linux/Python
-  3.12. La versión 1.2.0 incorpora la tesis V27 revisada y su auditoría adversarial
-  de trazabilidad metodológica. La versión 1.1.1 permanece como depósito
+  3.12. La versión 1.3.0 incorpora la tesis V28, corregida tras la auditoría
+  adversarial de la V27: resultados regenerados con HistGradientBoosting
+  determinista, bootstrap de 1 000 réplicas y anexos complementarios. Las cifras
+  de HistGradientBoosting dependen de la plataforma; las oficiales son las de
+  Windows. La versión 1.2.0 (DOI 10.5281/zenodo.24358468) contiene la tesis V27
+  y la versión 1.1.1 (DOI 10.5281/zenodo.23748244) permanece como depósito
   histórico, con dashboard de demostración, guías de instalación, tesis de
-  cierre documental y dictamen. El DOI específico de 1.2.0 está sin confirmar.
+  cierre documental y dictamen.
   La telemetría reciente procedente de respaldos se presenta como visualización,
   sin atribuirle predicción validada en tiempo real. Se conservan las limitaciones
   y las discrepancias de Windows documentadas. El código se distribuye bajo
