@@ -365,3 +365,10 @@ Registro de reemplazos aplicados por `make_v28.py` (el docx no usa control de ca
 - Registra: ajustes posteriores a las cartas del 19/11 (no tocan instrumentos, criterios ni calificaciones); confirmacion de V. Sanchez C. por WhatsApp (20/11, 14:52); sin respuesta de A. Huaman R. ni J. Ayay V.
 - La ratificacion de los expertos sigue referida a la version que revisaron; la constancia es declaracion del asesor, no de los expertos ni aprobacion institucional.
 - No se alteraron resultados, tablas ni calificaciones.
+
+
+## V28f (21-nov-2026) - Cotejo de fichas originales (Anexo 9)
+- Se cotejaron las 60 puntuaciones de la Tabla A9.2 y los codigos de observacion con las fichas originales de Huaman (14/11, escaneada), Ayay (15/11, PDF) y Sanchez (18/11, DOCX): coinciden en todos los casos.
+- La V de Aiken de la Tabla A9.1 se recalculo (n=3, c=3) sin diferencias.
+- Se reemplaza la frase 'pendiente de registro por el asesor' por la constancia del cotejo. El cotejo es documental; no verifica autenticidad de firmas ni sellos.
+- No se alteraron tablas, puntuaciones ni resultados.
